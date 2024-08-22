@@ -1,0 +1,900 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="HTML5"/></edmx:Reference>
+	<edmx:Reference Uri="../../../cgdc/ui_contract_mgmt/$metadata"><edmx:Include Namespace="UI_CONTRACT_MGMT" Alias="SAP"/></edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.sap.cgdc.ui_contract_mgmt_van.v1">
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/IsActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/Delete_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType/Update_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCFA_ITType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="General"/><PropertyValue Property="ID" String="General"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#General"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxeline"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxacrns"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxacrnl"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmsck"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxlacpt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxlinsp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfobpt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmatnr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmlfms"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpclin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpelin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfstdat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfendat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfundat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtinat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcasi"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmilConno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsubtype"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfbresp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxerrcd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxprgmCd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmsCaseid"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsuppAdd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxgfp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtac"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrfid"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxshpty"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxshpdoctyp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxprcod"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmthd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxovrun"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfrmtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxwthld"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxotall"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcmcty"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxclinw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfdesc"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdefin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxotmtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxaddbk"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrfeew"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrcstw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxperiv"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="General">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vbeln"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Posnr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vgbel"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxconno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxctype"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vgpos"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ernam"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Erdat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ertime"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Changedby"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Changedon"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Changedat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcomtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcline"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdpasg"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcsclin"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Sales Document Item"/><PropertyValue Property="Value" Path="Posnr"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Reference Document"/><PropertyValue Property="Value" Path="Vgbel"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Customer Contract No"/><PropertyValue Property="Value" Path="xcgdcxconno"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Contract/Project Typ"/><PropertyValue Property="Value" Path="xcgdcxctype"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="DPAS Rating/GovtPr"/><PropertyValue Property="Value" Path="xcgdcxdpasg"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>Vbeln</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTCHGDOCHEADERType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Objectid"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Udate"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/IsActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/Edit_ac"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/TextSave_ac"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/Delete_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/Update_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/to_CONTRACTITM_oc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType/to_ContractPartner_oc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_HDType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Info"/><PropertyValue Property="ID" String="HeaderInfo"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Sales"/><PropertyValue Property="ID" String="Sales"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#GSales"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Billing"/><PropertyValue Property="ID" String="OrgnizationInfo"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#OrgnizationInfo"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CLIN/SLIN"/><PropertyValue Property="ID" String="ItemDetails"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACTITM/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Flowdowns"/><PropertyValue Property="ID" String="CFA"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACTCFA_ITEM/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Clauses"/><PropertyValue Property="ID" String="HeaderClauses"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACT_HDRCLAUSES/@UI.LineItem"/></Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="Additional SD Data"/><PropertyValue Property="ID" String="AdditionalSDData"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="S4 Additional Data A"/><PropertyValue Property="ID" String="AdditionalSDDataA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdditionalSDDataA"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="S4 Additional Data B"/><PropertyValue Property="ID" String="AdditionalSDDataB"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdditionalSDDataB"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data"/><PropertyValue Property="ID" String="CISData"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data"/><PropertyValue Property="ID" String="CISDataA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#CISDataA"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data-Customer Added"/><PropertyValue Property="ID" String="CISDataB"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#CISDataB"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CIS-AD Billing and Finance"/><PropertyValue Property="ID" String="BillingHdr"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#BillingHdr"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Condition Summary"/><PropertyValue Property="ID" String="Condition"/><PropertyValue Property="Target" AnnotationPath="to_COND_CAT_OV/@UI.LineItem"/></Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="Status"/><PropertyValue Property="ID" String="Status"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Processing Status"/><PropertyValue Property="ID" String="StatusA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#StatusA"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Completeness"/><PropertyValue Property="ID" String="StatusB"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#StatusB"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Partner"/><PropertyValue Property="ID" String="Partner"/><PropertyValue Property="Target" AnnotationPath="to_ContractPartner/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Pricing"/><PropertyValue Property="ID" String="Pricing"/><PropertyValue Property="Target" AnnotationPath="to_ContractPrcingCondHdr/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Text"/><PropertyValue Property="ID" String="Text"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACT_TEXT/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Vochure Numbering"/><PropertyValue Property="ID" String="VochureNum"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#VochureNum"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Block Log"/><PropertyValue Property="ID" String="BlockLog"/><PropertyValue Property="Target" AnnotationPath="to_BLOCKLOG/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Modification Tracking"/><PropertyValue Property="ID" String="Modification"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACTCHGDOCHEADER/@UI.LineItem"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.HeaderFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ContractHeaderData"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Date"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="ContractHeaderData">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vbeln"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="Date">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CtValidT"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CtValidF"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Contract"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustomerFullName"/></Record>
+						</PropertyValue>
+					</Record>
+					<Annotation Term="Core.Messages">
+						<Collection>
+							<Record><PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/><PropertyValue Property="severity" String="error"/></Record>
+						</Collection>
+					</Annotation>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="AdditionalSDDataA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustGrp1"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustGrp2"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustGrp3"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustGrp4"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustGrp5"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CstCndgrp1"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CstCndgrp2"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CstCndgrp3"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CstCndgrp4"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CstCndgrp5"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="AdminHdr">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxconno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmil_conno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcusno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpcont"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpcall"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpcust"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxaiacd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxnaics"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxctype"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsubcon"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcrole"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfndsou"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxbmeth"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxptype"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxoffset"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtrmcmp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdpasg"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxseccls"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxgsmeq"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtinat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfstdat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfendat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfundat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcasi"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="BillingHdr">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrptlv"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxbcycl"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdirsub"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxclind"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfeesp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfeereb"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="CISDataA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdd254i"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxberry"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdcmai"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbpmt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxgpcapl"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsmlbiz"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbplq"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrlqa"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpprate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxnegFee"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrtbpn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxacrn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmsAlloc"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="GSales">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DocType"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SalesOrg"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DistrChan"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="division"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SalesOff"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SalesGrp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SalesDist"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="MastContr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DocDate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CreatedBy"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CreatedOn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="currency"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PriceDate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PriceList"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PriceGrp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="BillBlock"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DlvBlock"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="OrgnizationInfo">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PmntTrms"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Incoterms1"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Incoterms2l"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Incoterms3l"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="BillDate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CompCdeB"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="AccntAsgn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="AssNumber"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PymtMeth"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DunnBlock"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Sales">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CtValidF"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CtValidT"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="StatusA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Fksak"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="BBStatus"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Cmgst"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="RejStatus"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="StatusB">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvall"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvals"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvfak"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvfas"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvvlk"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Uvvls"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="VochureNum">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ad01basdoc"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxppa"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxppb"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbpa"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbpb"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtm"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="DocType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Contract#"/><PropertyValue Property="Value" Path="Vbeln"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataFieldForAction"><PropertyValue Property="Label" String="Save"/><PropertyValue Property="Action" String="cds_xcgdcxui_contract_mngmnt.cds_xcgdcxui_contract_mngmnt_Entities/TextSave"/><PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CtValidT"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmil_conno"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdpasg"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>DocType</PropertyPath>
+						<PropertyPath>Vbeln</PropertyPath>
+						<PropertyPath>SalesOrg</PropertyPath>
+						<PropertyPath>DistrChan</PropertyPath>
+						<PropertyPath>division</PropertyPath>
+						<PropertyPath>CtValidF</PropertyPath>
+						<PropertyPath>CtValidT</PropertyPath>
+						<PropertyPath>xcgdcxmil_conno</PropertyPath>
+						<PropertyPath>xcgdcxdpasg</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/IsActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/Delete_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType/Update_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractManagement_ItmType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Info"/><PropertyValue Property="ID" String="ItemDetails"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Sales"/><PropertyValue Property="ID" String="GSales"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#GSales"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Contract"/><PropertyValue Property="ID" String="GContract"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#GContract"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="Sales Contract Flowdown"/><PropertyValue Property="ID" String="CFA"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Admin"/><PropertyValue Property="ID" String="Admin"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#Admin"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="VisibiltyControl"/><PropertyValue Property="ID" String="VisibiltyControlItem"/>
+										<PropertyValue Property="Target" String="UI.FACET$23$">
+											<Annotation Term="Core.Messages">
+												<Collection>
+													<Record><PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-000"/><PropertyValue Property="message"
+														String="Navigation property '_CNTRCTITM_VSBLITYCNTRL' of annotation 'UI.FACET$23$' in proj./view '/CGDC/C_ContractManagement_Itm' not found"/><PropertyValue Property="severity" String="error"/></Record>
+												</Collection>
+											</Annotation>
+										</PropertyValue><Annotation Term="UI.Hidden"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Billing and Finance"/><PropertyValue Property="ID" String="BillandFin"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#BillandFin"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Clauses"/><PropertyValue Property="ID" String="ItemClauses"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACT_ITEMCLAUSES/@UI.LineItem"/></Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="Additional SD Data"/><PropertyValue Property="ID" String="AdditionalSDData"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="S4 Additional Data A"/><PropertyValue Property="ID" String="AdditionalSDDataA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdditionalSDDataA"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="S4 Additional Data B"/><PropertyValue Property="ID" String="AdditionalSDDataB"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdditionalSDDataB"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data"/><PropertyValue Property="ID" String="CISData"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data"/><PropertyValue Property="ID" String="CISDataA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#CISDataA"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="CIS-AD Additional Data-Customer Added"/><PropertyValue Property="ID" String="CISDataB"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#CISDataB"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Condition Summary"/><PropertyValue Property="ID" String="Condition"/><PropertyValue Property="Target" AnnotationPath="to_COND_CAT_OV_ITM/@UI.LineItem"/></Record>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="Billing Plan"/><PropertyValue Property="ID" String="BillPlan"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Billing Plan Dates"/><PropertyValue Property="ID" String="BillPlanB"/><PropertyValue Property="Target" AnnotationPath="to_BillingPlanDetail/@UI.LineItem"/><Annotation Term="UI.IsSummary" Bool="true"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Billing Plan"/><PropertyValue Property="ID" String="BillPlanA"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#BillPlanA"/><Annotation Term="UI.IsSummary" Bool="true"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Partners"/><PropertyValue Property="ID" String="PartnerItm"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACTITMPARTNER/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Princing"/><PropertyValue Property="ID" String="Pricing"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACT_IPCONDITION/@UI.LineItem"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Status"/><PropertyValue Property="ID" String="Status"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#Status"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Text"/><PropertyValue Property="ID" String="Text"/><PropertyValue Property="Target" AnnotationPath="to_CONTRACT_TEXT/@UI.LineItem"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.HeaderFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="ID" String="ObjectHeader"/><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ObjectHeader"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="ItemDetails">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="target_qty"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="StartDate"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="ObjectHeader">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Posnr"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="short_text"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="material"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="item_categ"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PosnrUI"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="short_text"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="item_categ"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="hg_lv_item"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="AdditionalSDDataA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Mvgr1"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Mvgr2"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Mvgr3"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Mvgr4"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Mvgr5"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Admin">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxconno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxacrns"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmilConno"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmsck"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxctype"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfobpt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcomtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxprgmCd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxeline"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxlacpt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxlinsp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxmlfms"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpclin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpelin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfstdat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfendat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfundat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdpasg"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxtinat"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcasi"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsubtype"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="BillPlanA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="FplnrAna"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Fpart"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Bedat"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="BillingItm">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxprcod"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfmthd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxovrun"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrfeew"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxrcstw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxperiv"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfrmtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxwthld"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxotall"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcmcty"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxclinw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfdesc"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxdefin"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxotmtd"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxaddbk"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="CISDataA">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfndtop"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfndsba"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxfndsbb"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxgpcapl"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxsmlbiz"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxgsmeq"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbpex"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxpbpgp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxnegFee"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxliqadj"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="GContract">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="StartDate"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="GSales">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="target_qty"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Pricingdate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="material"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ean11"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="TxsMaterialUsage"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Abgru"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Pmatn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Matgrp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ukonm"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CustomerPriceGroup"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PriceListType"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="BzirkAna"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Sales">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VtwegAna"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VkburAna"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Division"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="CreatedOn"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Ernam"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="AugruAna"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="deliveryTime"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VsbedAna"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Gsber"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Status">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ReasonforCancel"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PosnrUI"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="xcgdcxcline"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="material"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="short_text"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="item_categ"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VtwegAna"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="hg_lv_item"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Division"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VkburAna"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/IsActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/Delete_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/Update_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/keyParvw">
+				<Annotation Term="Common.Text" Path="vtext"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/ParvwUI">
+				<Annotation Term="Common.Text" Path="vtext"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/Kunnr">
+				<Annotation Term="Common.Text" Path="name1"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="General"/><PropertyValue Property="ID" String="General"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#General"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#Address"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Target" AnnotationPath="@Communication.Address"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Address">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="stras"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="pstlz"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ort01"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="General">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ParvwUI"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Kunnr"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ParvwUI"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Kunnr"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="stras"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="pstlz"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ort01"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.PresentationVariant">
+					<Record>
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>Kunnr</PropertyPath>
+								<PropertyPath>keyParvw</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Visualizations">
+							<Collection>
+								<AnnotationPath>@UI.LineItem</AnnotationPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/IsActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/Delete_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType/Update_mc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_ITMType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="General"/><PropertyValue Property="ID" String="General"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#General"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification#Address"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Target" AnnotationPath="@Communication.Address"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="vtext"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="Address">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="stras"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="pstlz"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ort01"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="General">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="keyParvw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Kunnr"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="vtext"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="keyParvw"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Kunnr"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="stras"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="pstlz"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ort01"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPrcingCond_HDType">
+				<Annotation Term="UI.FieldGroup" Qualifier="ConditionRateValue">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateRatio"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTypeName"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Condition Amount or Ratio"/><PropertyValue Property="Value" Path="ConditionRateAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionQuantity"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionIsForStatistics"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTypeActiveCriticality"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateRatio"/><Annotation Term="UI.Hidden"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTPRCINGCOND_ITMType/p_vbeln"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTPRCINGCOND_ITMType/p_posnr"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACTPRCINGCOND_ITMType">
+				<Annotation Term="UI.FieldGroup" Qualifier="ConditionRateValue">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateRatio"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTypeName"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Condition Amount or Ratio"/><PropertyValue Property="Value" Path="ConditionRateAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateValue"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionQuantity"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionCurrency"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VariantCondition"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionIsForStatistics"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateRatio"/><Annotation Term="UI.Hidden"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACT_CLAUSES_HDType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Cltyp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Clnum"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Clnam"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="fromdate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PresAt"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_CONTRACT_ITEMCLAUSESType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Cltyp"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Clnam"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Descr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Date"/><PropertyValue Property="Value" Path="fromdate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PresAt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Print Clause On Purchase Requisition"/><PropertyValue Property="Value" Path="Prt04"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_SALESCONTRACTTYPE_VHType">
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Sales Contract Type"/><PropertyValue Property="TypeNamePlural" String="Sales Contract Types"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_BLOCKLOGType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="type"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Posnr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="message"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="log_date"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="log_time"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_COND_CAT_OV_HDType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Category"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SubCategory"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTable"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Descr"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="RecordCount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_COND_CAT_OV_ITEMType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Category"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SubCategory"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTable"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Descr"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="RecordCount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_CONTRACTCFA_HDType">
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vbeln"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vbeln"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_ContractPrcingCond_itmType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionTypeName"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionRateValue"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionQuantity"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ConditionCurrency"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="VariantCondition"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_CONTRACT_TEXTType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Tdid"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="tdspras"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Tdshowname"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="tdtext"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_ITEMCATAGORTY_VHType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Pstyv"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Vtext"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_Procedure_VHType/Kvewe"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_Procedure_VHType/Kappl"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_Procedure_VHType/Stunr"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_Procedure_VHType/Zaehk"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxI_REASONREJ_VHType">
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Reason for Rejection"/><PropertyValue Property="TypeNamePlural" String="Reason for Rejection"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_CustomerConditionGroupVHType/CustomerConditionGroup_Text"><Annotation Term="UI.HiddenFilter"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_Customer_VHType/CustomerAccountGroup"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_Customer_VHType/AuthorizationGroup"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_Customer_VHType/IsBusinessPurposeCompleted"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_Customer_VHType/BusinessPartnerType"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_Customer_VHType/IsCompetitor"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DeliveryBlockReasonType/DeliveryBlockReason"><Annotation Term="UI.HiddenFilter"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DeliveryBlockReasonType/DeliveryBlockReason_Text"><Annotation Term="UI.HiddenFilter"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftUUID"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftEntityType"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftAccessType"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/ProcessingStartDateTime"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/InProcessByUser"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftIsKeptByUser"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/EnqueueStartDateTime"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftIsCreatedByMe"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftIsLastChangedByMe"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/DraftIsProcessedByMe"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/CreatedByUserDescription"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/LastChangedByUserDescription"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_DraftAdministrativeDataType/InProcessByUserDescription"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.I_SalesOrganizationType/AddressID"><Annotation Term="UI.HiddenFilter"/></Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

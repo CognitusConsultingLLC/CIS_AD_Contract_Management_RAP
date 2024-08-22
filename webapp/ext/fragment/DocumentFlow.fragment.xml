@@ -1,0 +1,100 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:m="sap.m"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:l="sap.ui.layout"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:f="sap.ui.layout.form"
+	xmlns:commons="sap.suite.ui.commons" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.suite.ui.commons.networkgraph"
+	xmlns:layout="sap.suite.ui.commons.networkgraph.layout">
+	
+	<m:IconTabBar id="idIconTabBarNoIcons" class="sapUiResponsiveContentPadding">
+		<m:items>
+			<m:IconTabFilter text="Process Flow" key="Graph">
+				<Graph enableWheelZoom="false" nodes="{HeaderData>/nodes}" lines="{HeaderData>/lines}" id="graph" beforeLayouting="onbeforeLayouting"
+					afterLayouting="onafterLayouting" graphReady="onGraphReady">
+					<layoutData>
+						<m:FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%" minWidth="1000px"/>
+					</layoutData>
+					<layoutAlgorithm>
+						<layout:LayeredLayout mergeEdges="{settings>/mergeEdges}" nodePlacement="{settings>/nodePlacement}" nodeSpacing="{settings>/nodeSpacing}"/>
+					</layoutAlgorithm>
+					<nodes>
+						<Node key="{HeaderData>id}" title="{HeaderData>title}" shape="Box" status="{HeaderData>state}" press="onNodePress" icon="{HeaderData>icon}">
+							<content>
+								<m:VBox>
+									<m:ObjectStatus text="{HeaderData>stateText}" state="{HeaderData>state}" class="sapUiSmallMarginBegin"/>
+									<m:Text text="{HeaderData>texts}" class="sapUiSmallMarginBegin"/>
+								</m:VBox>
+							</content>
+						</Node>
+					</nodes>
+					<lines>
+						<Line arrowPosition="{settings>/arrowPosition}" arrowOrientation="{settings>/arrowOrientation}" from="{HeaderData>from}"
+							to="{HeaderData>to}" status="{HeaderData>state}"></Line>
+					</lines>
+				</Graph>
+			</m:IconTabFilter>
+			<m:IconTabFilter text="Table" key="attachments">
+				<t:TreeTable id="idTDocFlow" rowSelectionChange="onRowSelection" selectionMode="Single" enableColumnReordering="false"
+					toggleOpenState="treeExpandEvent" rows="{path:'DocumentFlowModel>/nodeRoot', parameters: {arrayNames:['children']}}" enableSelectAll="false">
+					<t:noData>
+						<m:Text text="No Documents" class="sapUiSmallMarginTop"/>
+					</t:noData>
+					<t:columns>
+						<t:Column label="Document Number" width="12rem">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Docnum}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Item Number" tooltip="Item Number" width="5rem">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Itemnum}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Doc Type" tooltip="Item Number" visible="false" width="0rem">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Vbtyp}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Company Code" tooltip="Company Code" visible="false" width="0rem">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Bukrs}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Fiscal Year" tooltip="Fiscal Year" visible="false" width="0rem">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Gjahr}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Description">
+							<t:template>
+								<m:Text text="{DocumentFlowModel>Description}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Status" width="10rem">
+							<t:template>
+								<m:ObjectStatus inverted="true" text="{DocumentFlowModel>stateText}" state="{DocumentFlowModel>state}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Quantity" width="5rem">
+							<t:template>
+								<m:ObjectNumber number="{DocumentFlowModel>Rfmng}" unit="{DocumentFlowModel>Vrkme}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Quantity" width="10rem">
+							<t:template>
+								<m:ObjectNumber
+									number="{ parts:[{path:'DocumentFlowModel>Rfwrt'},{path:'DocumentFlowModel>Waers'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+									unit="{DocumentFlowModel>Waers}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="" width="3rem">
+							<t:template>
+								<m:Button type="Transparent" visible="{=${DocumentFlowModel>Vbtyp} !== 'G'}" icon="sap-icon://navigation-right-arrow" class="AddWBS"
+									press="onNavProcessFlow"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:TreeTable>
+			</m:IconTabFilter>
+		</m:items>
+	</m:IconTabBar>
+</core:FragmentDefinition>

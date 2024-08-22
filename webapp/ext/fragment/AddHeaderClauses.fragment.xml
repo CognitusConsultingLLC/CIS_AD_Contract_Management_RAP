@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog title="Add Clauses" class="sapUiContentPadding" horizontalScrolling="false" draggable="true">
+		<content>
+			<VBox id="CC" class="sapUiSmallMarginTop">
+				<Label text="Choose a Clauses Catalog: " labelFor="idComboBox"/>
+				<ComboBox id="idComboBox" text="Clauses Catalog" items="{ path: '/xCGDCxI_ClausesCatalog' }" change="onCatalogSelect" width="400px"
+					showClearIcon="true">
+					<core:Item key="{Cltyp}" text="{Descr}"/>
+				</ComboBox>
+				<t:TreeTable id="treeTable" width="auto" rowHeight="auto" columnHeaderVisible="true" showOverlay="false" enableGrouping="false"
+					useGroupMode="false" selectionMode="None" enableColumnReordering="false" visibleRowCountMode="Interactive" enableColumnFreeze="true"
+					expandFirstLevel="false" collapseRecursive="false">
+					<t:extension>
+						<OverflowToolbar design="Transparent">
+							<ToolbarSpacer/>
+							<SearchField tooltip="Search" liveChange=".onsearchTreeTable"/>
+						</OverflowToolbar>
+					</t:extension>
+					<t:columns>
+						<t:Column width="8rem" autoResizable="true">
+							<t:template>
+								<CheckBox selected="{checked}" select="onSelect" enabled="true"/>
+								<!--enabled="{= ${TreeDataModel>MatchingStatus} === 'EXC_MATCH' || ${TreeDataModel>MatchingStatus} === 'PAR_MATCH' ||  ${TreeDataModel>BillingDocItem} > 0}"/>-->
+							</t:template>
+						</t:Column>
+						<t:Column label="Clause No" visible = "false">
+							<t:template>
+								<Text text="{clnum}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Clause Name" width="8rem">
+							<t:template>
+								<Text text="{clnam}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Title" width="20rem">
+							<t:template>
+								<Text text="{descr}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Prescribed AT">
+							<t:template>
+								<Text text="{pres_at}"/>
+							</t:template>
+						</t:Column>
+						<t:Column label="Valid from">
+							<t:template>
+								<Text text="{Vldfr}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:TreeTable>
+			</VBox>
+		
+		</content>
+		<buttons>
+			<Button text="Add" id="idClausesAddButton" press="onCreateClauseSaveDialog" type="Emphasized" enabled="true"/>
+			<Button text="Cancel" press="onCreateClausecloseDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

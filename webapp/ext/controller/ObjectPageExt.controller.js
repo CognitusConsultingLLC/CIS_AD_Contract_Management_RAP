@@ -23,6 +23,7 @@ sap.ui.define([
 					let spath = oEvent.context.getPath();
 					let Vbeln = oEvent.context.getModel().getData(spath).Vbeln;
 					that.Objnr = oEvent.context.getModel().getData(spath).Objnr;
+					that.CreatedBy = oEvent.context.getModel().getData(spath).CreatedBy;
 					this.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
 					this.Auart = oEvent.context.getModel().getData(spath).Auart
 					that.Vbeln = Vbeln;
@@ -99,13 +100,18 @@ sap.ui.define([
 			}
 			var text;
 			var index = 0;
-
+			this.atexts = [];
+			atexts[0] = "Last Changed By:";
 			var state = SuiteLibrary.ProcessFlowNodeState.Neutral;
 			for (var i = 0; i < aStatus.length; i++) {
 				if (aStatus[i].usnam) {
-					text = "Last Changed By: " + aStatus[i].usnam;
+					this.atexts[1] = aStatus[i].usnam;
+					this.atexts[2] = aStatus[i].utime;
+					this.atexts[3] = aStatus[i].udate;
+					text = aStatus[i].Txt30;
 					state = SuiteLibrary.ProcessFlowNodeState.Positive;
 					PNodes.push({
+						"atexts":this.atexts,
 						"id": index,
 						"text": text,
 						"state": state,
@@ -123,9 +129,27 @@ sap.ui.define([
 					"position": i,
 				});
 			}
+			if (index == 0) {
+				state = SuiteLibrary.ProcessFlowNodeState.Positive;
+				this.atexts[1] = this.CreatedBy;
+				PNodes.push({
+					"id": index,
+					"atexts":this.atexts,
+					"text": text, 
+					"state": state,
+					"laneId": index,
+				});
+			}
 			this.getView().getModel("HeaderData").setProperty("/lanes", lanes);
 			this.getView().getModel("HeaderData").setProperty("/PNodes", PNodes);
 
+		},
+		onNodePress: function(event) {
+			var nodeId =event.getParameters().getNodeId();
+		   if(nodeId == 0 ){
+		   		MessageToast.show("Last Changed By" + this.atexts[1] ); 
+		   }else{
+			MessageToast.show("Last Changed By" + this.atexts[1] + "At" + this.atexts[2]  + this.atexts[3] ); }
 		},
 
 		urlCreation: function (s) {

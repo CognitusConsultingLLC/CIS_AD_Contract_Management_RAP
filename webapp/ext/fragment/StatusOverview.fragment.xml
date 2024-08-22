@@ -3,14 +3,15 @@
 	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:uxap="sap.uxap" xmlns="sap.m">
 		<Panel>
    <ui:ProcessFlow id="ProcessFlow" class="processFlow" lanes="{HeaderData>/lanes}" nodes="{HeaderData>/PNodes}" 
-			foldedCorners="true"> 
+			foldedCorners="true" 	nodePress="onNodePress"> 
    <ui:nodes >
 				<ui:ProcessFlowNode 
 					laneId="{HeaderData>laneId}"
 					nodeId="{HeaderData>id}"
 					state="{HeaderData>state}"
-					title = "{HeaderData>NodeText}"
+					title = "{HeaderData>text}"
 					type = "Single"
+					texts= "{HeaderData>atexts}"
 				 />
 			</ui:nodes>
     <ui:lanes>

@@ -3,7 +3,7 @@
 	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:uxap="sap.uxap" xmlns="sap.m">
 		<Panel>
    <ui:ProcessFlow id="ProcessFlow" class="processFlow" lanes="{HeaderData>/lanes}" nodes="{HeaderData>/PNodes}" 
-			foldedCorners="true" 	nodePress="onNodePress"> 
+			foldedCorners="true" 	nodePress="onNodePressProcessFlow"> 
    <ui:nodes >
 				<ui:ProcessFlowNode 
 					laneId="{HeaderData>laneId}"

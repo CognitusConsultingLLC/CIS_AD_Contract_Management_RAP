@@ -101,7 +101,7 @@ sap.ui.define([
 			var text;
 			var index = 0;
 			this.atexts = [];
-			atexts[0] = "Last Changed By:";
+			this.atexts[0] = "Last Changed By:";
 			var state = SuiteLibrary.ProcessFlowNodeState.Neutral;
 			for (var i = 0; i < aStatus.length; i++) {
 				if (aStatus[i].usnam) {
@@ -144,7 +144,7 @@ sap.ui.define([
 			this.getView().getModel("HeaderData").setProperty("/PNodes", PNodes);
 
 		},
-		onNodePress: function(event) {
+		onNodePressProcessFlow: function(event) {
 			var nodeId =event.getParameters().getNodeId();
 		   if(nodeId == 0 ){
 		   		MessageToast.show("Last Changed By" + this.atexts[1] ); 

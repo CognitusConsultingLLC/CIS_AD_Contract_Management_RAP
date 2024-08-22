@@ -8,9 +8,10 @@ sap.ui.define([
 	"sap/ui/core/ListItem",
 	"sap/ui/model/Sorter",
 	"sap/m/BusyDialog",
-	"sap/suite/ui/commons/library"
+	"sap/suite/ui/commons/library",
+	'sap/m/MessageToast'
 
-], function (ControllerExtension, JSONModel, Fragment, ODataModel, Filter, FilterOperator, ListItem, Sorter, BusyDialog, SuiteLibrary) {
+], function (ControllerExtension, JSONModel, Fragment, ODataModel, Filter, FilterOperator, ListItem, Sorter, BusyDialog, SuiteLibrary, MessageToast) {
 	"use strict";
 
 	return sap.ui.controller("cgdc.manage.contract.ext.controller.ObjectPageExt", {
@@ -106,8 +107,8 @@ sap.ui.define([
 			for (var i = 0; i < aStatus.length; i++) {
 				if (aStatus[i].usnam) {
 					this.atexts[1] = aStatus[i].usnam;
-					this.atexts[2] = aStatus[i].utime;
-					this.atexts[3] = aStatus[i].udate;
+					this.changeTime = aStatus[i].utime;
+					this.changedate = aStatus[i].udate;
 					text = aStatus[i].Txt30;
 					state = SuiteLibrary.ProcessFlowNodeState.Positive;
 					PNodes.push({
@@ -147,9 +148,9 @@ sap.ui.define([
 		onNodePressProcessFlow: function(event) {
 			var nodeId =event.getParameters().getNodeId();
 		   if(nodeId == 0 ){
-		   		MessageToast.show("Last Changed By" + this.atexts[1] ); 
+		   		MessageToast.show("Last Changed By " + this.atexts[1] ); 
 		   }else{
-			MessageToast.show("Last Changed By" + this.atexts[1] + "At" + this.atexts[2]  + this.atexts[3] ); }
+			MessageToast.show("Last Changed By " + this.atexts[1] + "At" + this.changeTime  + this.changedate ); }
 		},
 
 		urlCreation: function (s) {

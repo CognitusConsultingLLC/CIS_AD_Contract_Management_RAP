@@ -9,9 +9,11 @@ sap.ui.define([
 	"sap/ui/model/Sorter",
 	"sap/m/BusyDialog",
 	"sap/suite/ui/commons/library",
-	'sap/m/MessageToast'
+	'sap/m/MessageToast',
+	"sap/m/Dialog",
 
-], function (ControllerExtension, JSONModel, Fragment, ODataModel, Filter, FilterOperator, ListItem, Sorter, BusyDialog, SuiteLibrary, MessageToast) {
+], function (ControllerExtension, JSONModel, Fragment, ODataModel, Filter, FilterOperator, ListItem, Sorter, BusyDialog, SuiteLibrary,
+	MessageToast, Dialog) {
 	"use strict";
 
 	return sap.ui.controller("cgdc.manage.contract.ext.controller.ObjectPageExt", {
@@ -25,12 +27,14 @@ sap.ui.define([
 					let Vbeln = oEvent.context.getModel().getData(spath).Vbeln;
 					that.Objnr = oEvent.context.getModel().getData(spath).Objnr;
 					that.CreatedBy = oEvent.context.getModel().getData(spath).CreatedBy;
-					this.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
-					this.Auart = oEvent.context.getModel().getData(spath).Auart
+					that.SoldToParty = oEvent.context.getModel().getData(spath).SoldToParty
+					that.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
+					that.Auart = oEvent.context.getModel().getData(spath).Auart
 					that.Vbeln = Vbeln;
+					that.getCustomerImageData(that.SoldToParty);
 					that.onDocumentflowProcess(Vbeln);
-					that.getStatusData(that.Objnr, this.Auart, this.statusProfile);
-					that.onloadstatusProcess(this.statusProfile);
+					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);
+					that.onloadstatusProcess(that.statusProfile);
 				}
 			});
 		},
@@ -40,6 +44,29 @@ sap.ui.define([
 			this.getView().setModel(json, "HeaderData");
 			this.getView().getModel("HeaderData").setSizeLimit(1000);
 			this.getView().getModel("HeaderData").setData([]);
+		},
+		getCustomerImageData: function (SoldToParty) {
+			//var imageData = {};
+			var that = this;
+			var customernumber = SoldToParty;
+			var oCIDataModel = this.getOwnerComponent().getModel("customerImages");
+			oCIDataModel.callFunction("/GetAllOriginals", {
+				method: "GET",
+				urlParameters: {
+					"ObjectKey": customernumber.toString(), //"1",
+					"ObjectType": "BUS1006",
+					"SemanticObjectType": "",
+					"IsDraft": true,
+					"AttachmentFramework": ""
+				},
+				success: function (oData, response) {
+					var objImgData = {
+						results: oData.results[0]
+					};
+					that.getOwnerComponent().getModel("customerImageModel").setData(objImgData);
+				},
+				error: function (oError) {}
+			});
 		},
 		getStatusData: function (Objnr, Auart, statusProfile) {
 			let that = this;
@@ -87,6 +114,7 @@ sap.ui.define([
 				}
 			});
 		},
+
 		setStatusData: function (data) {
 			var statusData = this.statusData;
 			this.oProcessFlow = this.getView().byId("ProcessFlow");
@@ -107,12 +135,12 @@ sap.ui.define([
 			for (var i = 0; i < aStatus.length; i++) {
 				if (aStatus[i].usnam) {
 					this.atexts[1] = aStatus[i].usnam;
-					this.changeTime = aStatus[i].utime;
-					this.changedate = aStatus[i].udate;
+					this.atexts[2] = aStatus[i].utime;
+					this.atexts[3] = aStatus[i].udate;
 					text = aStatus[i].Txt30;
 					state = SuiteLibrary.ProcessFlowNodeState.Positive;
 					PNodes.push({
-						"atexts":this.atexts,
+						"atexts": this.atexts,
 						"id": index,
 						"text": text,
 						"state": state,
@@ -135,8 +163,8 @@ sap.ui.define([
 				this.atexts[1] = this.CreatedBy;
 				PNodes.push({
 					"id": index,
-					"atexts":this.atexts,
-					"text": text, 
+					"atexts": this.atexts,
+					"text": text,
 					"state": state,
 					"laneId": index,
 				});
@@ -145,12 +173,27 @@ sap.ui.define([
 			this.getView().getModel("HeaderData").setProperty("/PNodes", PNodes);
 
 		},
-		onNodePressProcessFlow: function(event) {
-			var nodeId =event.getParameters().getNodeId();
-		   if(nodeId == 0 ){
-		   		MessageToast.show("Last Changed By " + this.atexts[1] ); 
-		   }else{
-			MessageToast.show("Last Changed By " + this.atexts[1] + "At" + this.changeTime  + this.changedate ); }
+
+		onNodePressProcessFlow: function (event) {
+			var nodeId = event.getParameters().getNodeId();
+			let seconds = this.atexts[2].ms / 1000;
+			// 2- Extract hours:
+			const hours = parseInt(seconds / 3600); // 3,600 seconds in 1 hour
+			seconds = seconds % 3600; // seconds remaining after extracting hours
+			// 3- Extract minutes:
+			const minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
+			// 4- Keep only seconds not extracted to minutes:
+			seconds = seconds % 60;
+			const oTime = hours + ":" + minutes + ":" + seconds;
+			var oDate = sap.ui.core.format.DateFormat.getInstance({
+				style: "medium",
+				calendarType: sap.ui.core.CalendarType.Gregorian
+			});
+			if (nodeId == 0) {
+				MessageToast.show(this.atexts[0] + this.atexts[1]);
+			} else {
+				MessageToast.show(this.atexts[0] + this.atexts[1] + "At" + oDate.format(this.atexts[3]) + " " + oTime);
+			}
 		},
 
 		urlCreation: function (s) {
@@ -445,13 +488,13 @@ sap.ui.define([
 			}
 			this._CreatHeaderClause.open();
 			sap.ui.getCore().byId("idClausesAddButton").setEnabled(false);
-			var table = sap.ui.getCore().byId("idAddClauses");
-			var oModelContext = this.getOwnerComponent().getModel().createEntry("/xCGDCxC_Contract_HDClauses", {
-				properties: {
-					"Vbeln": this.header
-				}
-			});
-			table.setBindingContext(oModelContext);
+			//var table = sap.ui.getCore().byId("idAddClauses");
+			// var oModelContext = this.getOwnerComponent().getModel().createEntry("/xCGDCxC_Contract_HDClauses", {
+			// 	properties: {
+			// 		"Vbeln": this.Vbeln
+			// 	}
+			// });
+			//	table.setBindingContext(oModelContext);
 
 		},
 		onSelect: function (oEvent) {
@@ -480,7 +523,7 @@ sap.ui.define([
 		},
 		onCatalogSelect: function (oEvent) {
 			var Catlogtype = oEvent.getSource().getSelectedKey();
-			var Cltyp = "'" + Catlogtype + "'";
+			var Cltyp = Catlogtype;
 			var that = this;
 			var oModel = this.getView().getModel();
 			var oPath = '/xCGDCxI_Clasues';
@@ -669,6 +712,19 @@ sap.ui.define([
 				this._busyIndicator = null;
 			}
 		},
-		onClickActionxCGDCxC_ContractManagement_HDSections2: function (oEvent) {}
+		onNavigateToPricingApp: function (oEvent) {
+			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+			oCrossAppNavigator.toExternal({
+				target: {
+					semanticObject: "pricingmaintenance",
+					action: "manage"
+				},
+				params: {
+					"Pmprf": this.Auart,
+					"Vbeln": this.Vbeln
+				}
+			});
+
+		}
 	});
 });

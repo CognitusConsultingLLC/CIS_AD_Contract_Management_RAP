@@ -33,7 +33,7 @@ sap.ui.define([
 					that.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
 					that.Auart = oEvent.context.getModel().getData(spath).Auart
 					that.Vbeln = Vbeln;
-				//	that.getCustomerImageData(that.SoldToParty);
+					that.getCustomerImageData(that.SoldToParty);
 					that.onDocumentflowProcess(Vbeln);
 				//	that.conditionTabNav();
 					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);

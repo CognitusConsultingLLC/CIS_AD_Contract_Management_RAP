@@ -21,6 +21,8 @@ sap.ui.define([
 		onInit: function () {
 			this.initializeJSONModel();
 			let that = this;
+	    	let oConditionTable = this.getView().byId("cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable");
+		//	oConditionTable.setNavigationItems(this.conditionTabNav);
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
 					let spath = oEvent.context.getPath();
@@ -33,6 +35,7 @@ sap.ui.define([
 					that.Vbeln = Vbeln;
 					that.getCustomerImageData(that.SoldToParty);
 					that.onDocumentflowProcess(Vbeln);
+				//	that.conditionTabNav();
 					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);
 					that.onloadstatusProcess(that.statusProfile);
 				}
@@ -45,6 +48,10 @@ sap.ui.define([
 			this.getView().getModel("HeaderData").setSizeLimit(1000);
 			this.getView().getModel("HeaderData").setData([]);
 		},
+		conditionTabNav: function( ){
+		  
+		},
+		
 		getCustomerImageData: function (SoldToParty) {
 			//var imageData = {};
 			var that = this;
@@ -130,26 +137,47 @@ sap.ui.define([
 			var text;
 			var index = 0;
 			this.atexts = [];
-			this.atexts[0] = "Last Changed By:";
+			this.alastChanged = [];
+			this.alastChanged[0] =  "Changed At:";
+			this.atexts[0] = "Changed By:";
 			var state = SuiteLibrary.ProcessFlowNodeState.Neutral;
 			for (var i = 0; i < aStatus.length; i++) {
+				if ( aStatus[i].utime) {
+				let seconds = aStatus[i].utime.ms / 1000;
+				var hours = parseInt(seconds / 3600); // 3,600 seconds in 1 hour
+				seconds = seconds % 3600; // seconds remaining after extracting hours
+				// 3- Extract minutes:
+				var minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
+				// 4- Keep only seconds not extracted to minutes:
+				seconds = seconds % 60;
+				let otime = hours + ":" + minutes + ":" + seconds;
+				var oDate = sap.ui.core.format.DateFormat.getInstance({
+					style: "medium",
+					calendarType: sap.ui.core.CalendarType.Gregorian
+				});
+				this.alastChanged[1] = otime + " " + oDate.format(aStatus[i].udate); }
 				if (aStatus[i].usnam) {
 					this.atexts[1] = aStatus[i].usnam;
-					this.atexts[2] = aStatus[i].utime;
-					this.atexts[3] = aStatus[i].udate;
 					text = aStatus[i].Txt30;
-					state = SuiteLibrary.ProcessFlowNodeState.Positive;
+					if (aStatus[i].Inact = 'X'){
+						state = SuiteLibrary.ProcessFlowNodeState.Neutral; }
+						else {
+						state = SuiteLibrary.ProcessFlowNodeState.Positive;
+					}
+					
+				
 					PNodes.push({
 						"atexts": this.atexts,
 						"id": index,
 						"text": text,
 						"state": state,
 						"laneId": i,
+						"alastChanged": this.alastChanged
 					});
 					index = index + 1;
 				} else {
 					text = aStatus[i].Txt30;
-					state = SuiteLibrary.ProcessFlowNodeState.Neutral;
+					state = state;
 
 				}
 				lanes.push({
@@ -167,6 +195,7 @@ sap.ui.define([
 					"text": text,
 					"state": state,
 					"laneId": index,
+					"alastChanged": this.alastChanged
 				});
 			}
 			this.getView().getModel("HeaderData").setProperty("/lanes", lanes);
@@ -174,27 +203,7 @@ sap.ui.define([
 
 		},
 
-		onNodePressProcessFlow: function (event) {
-			var nodeId = event.getParameters().getNodeId();
-			let seconds = this.atexts[2].ms / 1000;
-			// 2- Extract hours:
-			const hours = parseInt(seconds / 3600); // 3,600 seconds in 1 hour
-			seconds = seconds % 3600; // seconds remaining after extracting hours
-			// 3- Extract minutes:
-			const minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
-			// 4- Keep only seconds not extracted to minutes:
-			seconds = seconds % 60;
-			const oTime = hours + ":" + minutes + ":" + seconds;
-			var oDate = sap.ui.core.format.DateFormat.getInstance({
-				style: "medium",
-				calendarType: sap.ui.core.CalendarType.Gregorian
-			});
-			if (nodeId == 0) {
-				MessageToast.show(this.atexts[0] + this.atexts[1]);
-			} else {
-				MessageToast.show(this.atexts[0] + this.atexts[1] + "At" + oDate.format(this.atexts[3]) + " " + oTime);
-			}
-		},
+	
 
 		urlCreation: function (s) {
 			return encodeURIComponent(s).replace(/\'/g, "%27");

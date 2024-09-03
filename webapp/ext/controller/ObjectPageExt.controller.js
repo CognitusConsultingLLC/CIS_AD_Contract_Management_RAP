@@ -33,7 +33,7 @@ sap.ui.define([
 					that.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
 					that.Auart = oEvent.context.getModel().getData(spath).Auart
 					that.Vbeln = Vbeln;
-					that.getCustomerImageData(that.SoldToParty);
+				//	that.getCustomerImageData(that.SoldToParty);
 					that.onDocumentflowProcess(Vbeln);
 				//	that.conditionTabNav();
 					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);
@@ -197,6 +197,13 @@ sap.ui.define([
 					"laneId": index,
 					"alastChanged": this.alastChanged
 				});
+			}
+			for(var j=0;j<PNodes.length;j++){
+				if(PNodes.length - 1 !== j){
+				PNodes[j].children = [j + 1];
+				}else{// the last record's children empty
+				PNodes[j].children = [ ];	
+				}
 			}
 			this.getView().getModel("HeaderData").setProperty("/lanes", lanes);
 			this.getView().getModel("HeaderData").setProperty("/PNodes", PNodes);

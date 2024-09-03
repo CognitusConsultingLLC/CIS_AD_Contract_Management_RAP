@@ -13,6 +13,7 @@
 					type = "Single"
 					stateText = "{HeaderData>text}"
 					texts= "{HeaderData>alastChanged}"
+					children="{HeaderData>children}"
 				 />
 			</ui:nodes>
     <ui:lanes>

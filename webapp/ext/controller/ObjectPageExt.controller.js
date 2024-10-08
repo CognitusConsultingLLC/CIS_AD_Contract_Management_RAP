@@ -21,21 +21,58 @@ sap.ui.define([
 		onInit: function () {
 			this.initializeJSONModel();
 			let that = this;
-	    	let oConditionTable = this.getView().byId("cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable");
-		//	oConditionTable.setNavigationItems(this.conditionTabNav);
+			let oConditionTable = this.getView().byId(
+				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable"
+			);
+			//	oConditionTable.setNavigationItems(this.conditionTabNav);
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
 					let spath = oEvent.context.getPath();
 					let Vbeln = oEvent.context.getModel().getData(spath).Vbeln;
 					that.Objnr = oEvent.context.getModel().getData(spath).Objnr;
+					if (oEvent.context.getModel().getData(spath).Posnr) {
+						that.Posnr = oEvent.context.getModel().getData(spath).Posnr;
+					} else {
+						that.Posnr = '00000';
+					}
 					that.CreatedBy = oEvent.context.getModel().getData(spath).CreatedBy;
 					that.SoldToParty = oEvent.context.getModel().getData(spath).SoldToParty
 					that.statusProfile = oEvent.context.getModel().getData(spath).Stsma;
 					that.Auart = oEvent.context.getModel().getData(spath).Auart
 					that.Vbeln = Vbeln;
-					that.getCustomerImageData(that.SoldToParty);
+					if (that.Vbeln == '') {
+						that.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::Section"
+						).setVisible(false);
+						that.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--BeforeFacet::xCGDCxC_ContractManagement_HD::Status::Section"
+						).setVisible(false);
+						that.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--BeforeFacet::xCGDCxC_ContractManagement_HD::VochureNum::Section"
+						).setVisible(false);
+						that.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--BeforeFacet::xCGDCxC_ContractManagement_HD::VochureNum::Section"
+						).setVisible(false);
+						that.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::NavtoClinAcrn"
+						).setVisible(false);
+
+					}
+					if (that.Posnr == '00000') {
+						if (that.getView().byId(
+								"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--BeforeFacet::xCGDCxC_ContractManagement_Itm::Text::Section"
+							)) {
+							that.getView().byId(
+								"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--BeforeFacet::xCGDCxC_ContractManagement_Itm::Text::Section"
+							).setVisible(false);
+							that.getView().byId(
+								"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--Condition::Section"
+							).setVisible(false);
+						}
+						that.getCustomerImageData(that.SoldToParty);
+					}
 					that.onDocumentflowProcess(Vbeln);
-				//	that.conditionTabNav();
+					//	that.conditionTabNav();
 					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);
 					that.onloadstatusProcess(that.statusProfile);
 				}
@@ -48,10 +85,10 @@ sap.ui.define([
 			this.getView().getModel("HeaderData").setSizeLimit(1000);
 			this.getView().getModel("HeaderData").setData([]);
 		},
-		conditionTabNav: function( ){
-		  
+		conditionTabNav: function () {
+
 		},
-		
+
 		getCustomerImageData: function (SoldToParty) {
 			//var imageData = {};
 			var that = this;
@@ -136,36 +173,37 @@ sap.ui.define([
 			}
 			var text;
 			var index = 0;
-			this.atexts = [];
-			this.alastChanged = [];
-			this.alastChanged[0] =  "Changed At:";
-			this.atexts[0] = "Changed By:";
 			var state = SuiteLibrary.ProcessFlowNodeState.Neutral;
 			for (var i = 0; i < aStatus.length; i++) {
-				if ( aStatus[i].utime) {
-				let seconds = aStatus[i].utime.ms / 1000;
-				var hours = parseInt(seconds / 3600); // 3,600 seconds in 1 hour
-				seconds = seconds % 3600; // seconds remaining after extracting hours
-				// 3- Extract minutes:
-				var minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
-				// 4- Keep only seconds not extracted to minutes:
-				seconds = seconds % 60;
-				let otime = hours + ":" + minutes + ":" + seconds;
-				var oDate = sap.ui.core.format.DateFormat.getInstance({
-					style: "medium",
-					calendarType: sap.ui.core.CalendarType.Gregorian
-				});
-				this.alastChanged[1] = otime + " " + oDate.format(aStatus[i].udate); }
+				if (aStatus[i].utime) {
+					this.atexts = [];
+					this.alastChanged = [];
+					this.alastChanged[0] = "Changed At:";
+					this.atexts[0] = "Changed By:";
+					let seconds = aStatus[i].utime.ms / 1000;
+					var hours = parseInt(seconds / 3600); // 3,600 seconds in 1 hour
+					seconds = seconds % 3600; // seconds remaining after extracting hours
+					// 3- Extract minutes:
+					var minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
+					// 4- Keep only seconds not extracted to minutes:
+					seconds = seconds % 60;
+					let otime = hours + ":" + minutes + ":" + seconds;
+					var oDate = sap.ui.core.format.DateFormat.getInstance({
+						style: "medium",
+						calendarType: sap.ui.core.CalendarType.Gregorian
+					});
+					this.alastChanged[1] = otime + " " + oDate.format(aStatus[i].udate);
+				}
 				if (aStatus[i].usnam) {
 					this.atexts[1] = aStatus[i].usnam;
 					text = aStatus[i].Txt30;
-					if (aStatus[i].Inact = 'X'){
-						state = SuiteLibrary.ProcessFlowNodeState.Neutral; }
-						else {
-						state = SuiteLibrary.ProcessFlowNodeState.Positive;
+					if (aStatus[i].Inact == 'X') {
+						state = SuiteLibrary.ProcessFlowNodeState.Neutral;
+					} else {
+						if (aStatus[i].Inact == "")
+							state = SuiteLibrary.ProcessFlowNodeState.Positive;
 					}
-					
-				
+
 					PNodes.push({
 						"atexts": this.atexts,
 						"id": index,
@@ -198,19 +236,17 @@ sap.ui.define([
 					"alastChanged": this.alastChanged
 				});
 			}
-			for(var j=0;j<PNodes.length;j++){
-				if(PNodes.length - 1 !== j){
-				PNodes[j].children = [j + 1];
-				}else{// the last record's children empty
-				PNodes[j].children = [ ];	
+			for (var j = 0; j < PNodes.length; j++) {
+				if (PNodes.length - 1 !== j) {
+					PNodes[j].children = [j + 1];
+				} else { // the last record's children empty
+					PNodes[j].children = [];
 				}
 			}
 			this.getView().getModel("HeaderData").setProperty("/lanes", lanes);
 			this.getView().getModel("HeaderData").setProperty("/PNodes", PNodes);
 
 		},
-
-	
 
 		urlCreation: function (s) {
 			return encodeURIComponent(s).replace(/\'/g, "%27");
@@ -220,7 +256,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			this.getView().getModel("HeaderData").setProperty("/lines", []);
 			this.getView().getModel("HeaderData").setProperty("/nodes", []);
-			var posnr = '00000';
+			var posnr = that.Posnr;
 			var oPath = "/xCGDCxC_CONTRACTDOCUMENTFLOW(p_vbeln=" + this.urlCreation("'" + header + "'") + ",p_posnr=" + this.urlCreation("'" +
 				posnr + "'") + ")/Set";
 			var urlParameters = {}
@@ -498,11 +534,24 @@ sap.ui.define([
 
 		},
 		onClickActionxCGDCxC_ContractManagement_HDSections1: function (oEvent) {
+			// if (!this._CreatHeaderClause) {
+			// 	this._CreatHeaderClause = sap.ui.xmlfragment("cgdc.manage.contract.ext.fragment.AddHeaderClauses", this);
+			// 	this.getView().addDependent(this._CreatHeaderClause);
+			// }
+			// this._CreatHeaderClause.open();
 			if (!this._CreatHeaderClause) {
-				this._CreatHeaderClause = sap.ui.xmlfragment("cgdc.manage.contract.ext.fragment.AddHeaderClauses", this);
-				this.getView().addDependent(this._CreatHeaderClause);
+				Fragment.load({
+						name: "cgdc.manage.contract.ext.fragment.AddHeaderClauses",
+						controller: this
+					})
+					.then(function (dialog) {
+						this._CreatHeaderClause = dialog;
+						this.getView().addDependent(dialog);
+						dialog.open();
+					}.bind(this));
+			} else {
+				this._CreatHeaderClause.open();
 			}
-			this._CreatHeaderClause.open();
 			sap.ui.getCore().byId("idClausesAddButton").setEnabled(false);
 			//var table = sap.ui.getCore().byId("idAddClauses");
 			// var oModelContext = this.getOwnerComponent().getModel().createEntry("/xCGDCxC_Contract_HDClauses", {
@@ -619,8 +668,10 @@ sap.ui.define([
 			}));
 			sap.ui.getCore().byId("idComboBox").setSelectedKey("");
 			//sap.ui.getCore().byId("idClauseCatalog").setEnabled(true);
-			sap.ui.getCore().byId("idClausesAddButton").setEnabled(true);
+			sap.ui.getCore().byId("idClausesAddButton").setEnabled(false);
 			this._CreatHeaderClause.close();
+			this._CreatHeaderClause.destroy();
+			this._CreatHeaderClause = null;
 		},
 		getSelectedData: function (allClauses) {
 			for (var x in allClauses) {
@@ -673,7 +724,7 @@ sap.ui.define([
 
 		onCreateClauseSaveDialog: function (oEvent) {
 			var that = this;
-			var clausesbyName = sap.ui.getCore().byId("CN").getVisible();
+
 			var oDataModel = this.getOwnerComponent().getModel("customFieldsModel");
 			var _data = {};
 			_data = {
@@ -729,17 +780,57 @@ sap.ui.define([
 			}
 		},
 		onNavigateToPricingApp: function (oEvent) {
+			var oSelectedItem = oEvent.getSource().getParent().getParent().getSelectedItems();
+			var oConditionTable = oSelectedItem[0].getBindingContext().getObject("ConditionTable");
+			var ConditionType = oSelectedItem[0].getBindingContext().getObject("ConditionType");
+			if (!this.Auart) {
+				this.Auart = oSelectedItem[0].getBindingContext().getObject("Pmprf");
+			}
 			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
-			oCrossAppNavigator.toExternal({
+			var sSemanticObject = "pricingmaintenance";
+			var sAction = "manage";
+
+			var sHash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
 				target: {
-					semanticObject: "pricingmaintenance",
-					action: "manage"
+					semanticObject: sSemanticObject,
+					action: sAction
 				},
 				params: {
 					"Pmprf": this.Auart,
-					"Vbeln": this.Vbeln
+					"Vbeln": this.Vbeln,
+					"Kschl": ConditionType,
+					"Kotab": oConditionTable
 				}
-			});
+			})) || "";
+			
+			 var fixedURL =	"#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" +  this.Auart + "',Kschl='" + ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')/toCondCat(Pmprf='" + this.Auart + "',Kschl='" +  
+			 ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')" ;
+		     window.location.href = window.location.href.split('#')[0] + fixedURL;
+
+			// oCrossAppNavigator.toExternal({
+			// 	target: {
+			// 		semanticObject: "pricingmaintenance",
+			// 		action: "manage"
+			// 	},
+			// 	params: {
+			// 		"Pmprf": this.Auart,
+			// 		"Vbeln": this.Vbeln,
+			// 		"Kschl": ConditionType,
+			// 		"Kotab": oConditionTable
+
+			// 	}
+			// });
+
+		},
+		
+	  
+		onNavToClinAcrn: function (oEvent) {
+			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+			var sSemanticObject = "cisadclinacrn";
+			var sAction = "manage";
+		    var sHash = "'#cisadclinacrn-manage?Vbeln=" + this.Vbeln + '&';
+			var fixedURL = "/xCGDCxC_GeneralSetup(Vbeln='" + this.Vbeln + "',DraftUUID=guid" + "'00000000-0000-0000-0000-000000000000'" +",IsActiveEntity=true)";
+			window.location.href = window.location.href.split('#')[0] +  sHash + fixedURL;
 
 		}
 	});

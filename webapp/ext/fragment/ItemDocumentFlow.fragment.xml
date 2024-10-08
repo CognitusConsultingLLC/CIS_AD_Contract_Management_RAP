@@ -5,7 +5,7 @@
 	xmlns:commons="sap.suite.ui.commons" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.suite.ui.commons.networkgraph"
 	xmlns:layout="sap.suite.ui.commons.networkgraph.layout">
 	
-	<m:IconTabBar id="idIconTabBarNoIcons" class="sapUiResponsiveContentPadding">
+	<m:IconTabBar id="idItemIconTabBarNoIcons" class="sapUiResponsiveContentPadding">
 		<m:items>
 			<m:IconTabFilter text="Process Flow" key="Graph">
 				<Graph enableWheelZoom="false" nodes="{HeaderData>/nodes}" lines="{HeaderData>/lines}" id="graph" beforeLayouting="onbeforeLayouting"
@@ -33,7 +33,7 @@
 				</Graph>
 			</m:IconTabFilter>
 			<m:IconTabFilter text="Table" key="attachments">
-				<t:TreeTable id="idTDocFlow" rowSelectionChange="onRowSelection" selectionMode="Single" enableColumnReordering="false"
+				<t:TreeTable id="iditemTDocFlow" rowSelectionChange="onRowSelection" selectionMode="Single" enableColumnReordering="false"
 					toggleOpenState="treeExpandEvent" rows="{path:'DocumentFlowModel>/nodeRoot', parameters: {arrayNames:['children']}}" enableSelectAll="false">
 					<t:noData>
 						<m:Text text="No Documents" class="sapUiSmallMarginTop"/>

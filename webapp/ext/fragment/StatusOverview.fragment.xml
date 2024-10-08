@@ -17,7 +17,7 @@
 				 />
 			</ui:nodes>
     <ui:lanes>
-        <ui:ProcessFlowLaneHeader iconSrc="sap-icon://status-completed" text="{HeaderData>text}"  laneId="{HeaderData>id}"
+        <ui:ProcessFlowLaneHeader iconSrc="sap-icon://message-success" text="{HeaderData>text}"  laneId="{HeaderData>id}"
                       position="{HeaderData>position}" value="100%" />
     </ui:lanes>
 </ui:ProcessFlow>

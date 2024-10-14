@@ -24,9 +24,38 @@ sap.ui.define([
 			let oConditionTable = this.getView().byId(
 				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable"
 			);
+
 			//	oConditionTable.setNavigationItems(this.conditionTabNav);
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
+					// var oButton = that.getView().byId("cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--edit");
+					// if (oButton && !oButton.getVisible()) {
+					// 	that.getView().getContent()[0].setShowHeaderContent(true);
+					// }
+					let oDisplayText = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_CONTRACT_TEXT--General::updateTxt1::Field"
+					);
+					let oDisplayEmptyText = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_CONTRACT_TEXT--General::updateTxt::Field"
+					);
+					let oDisplayTextItem = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_CONTRACTITM_TXT--General::updateTxt1::Field"
+						);
+					let oDisplayEmptyTextItem = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_CONTRACTITM_TXT--General::updateTxt::Field"
+					);
+					if (oDisplayText) {
+						let textValue = oDisplayText.getValue();
+					   if(!oDisplayEmptyText.getValue()){
+						oDisplayEmptyText.setValue(textValue); }
+						oDisplayText.setVisible(false);
+					}
+					if (oDisplayTextItem) {
+						let textValue = oDisplayTextItem.getValue();
+					 if(!oDisplayEmptyTextItem.getValue()){
+						oDisplayEmptyTextItem.setValue(textValue); }
+						oDisplayTextItem.setVisible(false);
+					}
 					let spath = oEvent.context.getPath();
 					let Vbeln = oEvent.context.getModel().getData(spath).Vbeln;
 					that.Objnr = oEvent.context.getModel().getData(spath).Objnr;
@@ -552,7 +581,7 @@ sap.ui.define([
 			} else {
 				this._CreatHeaderClause.open();
 			}
-			sap.ui.getCore().byId("idClausesAddButton").setEnabled(false);
+			//	sap.ui.getCore().byId("idClausesAddButton").setEnabled(false);
 			//var table = sap.ui.getCore().byId("idAddClauses");
 			// var oModelContext = this.getOwnerComponent().getModel().createEntry("/xCGDCxC_Contract_HDClauses", {
 			// 	properties: {
@@ -729,9 +758,9 @@ sap.ui.define([
 			var _data = {};
 			_data = {
 				"vbeln": this.Vbeln, // contract number
-				"posnr": '00000', // contract item number
+				"posnr": this.Posnr, // contract item number
 				"docno": this.Vbeln, // document number, eg. purchase req number
-				"itmno": '00000', // document item number, eg. puchase req item number
+				"itmno": that.Posnr, // document item number, eg. puchase req item number
 				"entityref": "Contract",
 				"function": "update"
 			}
@@ -802,10 +831,11 @@ sap.ui.define([
 					"Kotab": oConditionTable
 				}
 			})) || "";
-			
-			 var fixedURL =	"#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" +  this.Auart + "',Kschl='" + ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')/toCondCat(Pmprf='" + this.Auart + "',Kschl='" +  
-			 ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')" ;
-		     window.location.href = window.location.href.split('#')[0] + fixedURL;
+
+			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + this.Auart + "',Kschl='" + ConditionType + "',Kotab='" +
+				oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')/toCondCat(Pmprf='" + this.Auart + "',Kschl='" +
+				ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + this.Vbeln + "',mganr='')";
+			window.location.href = window.location.href.split('#')[0] + fixedURL;
 
 			// oCrossAppNavigator.toExternal({
 			// 	target: {
@@ -822,15 +852,15 @@ sap.ui.define([
 			// });
 
 		},
-		
-	  
+
 		onNavToClinAcrn: function (oEvent) {
 			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
 			var sSemanticObject = "cisadclinacrn";
 			var sAction = "manage";
-		    var sHash = "'#cisadclinacrn-manage?Vbeln=" + this.Vbeln + '&';
-			var fixedURL = "/xCGDCxC_GeneralSetup(Vbeln='" + this.Vbeln + "',DraftUUID=guid" + "'00000000-0000-0000-0000-000000000000'" +",IsActiveEntity=true)";
-			window.location.href = window.location.href.split('#')[0] +  sHash + fixedURL;
+			var sHash = "'#cisadclinacrn-manage?Vbeln=" + this.Vbeln + '&';
+			var fixedURL = "/xCGDCxC_GeneralSetup(Vbeln='" + this.Vbeln + "',DraftUUID=guid" + "'00000000-0000-0000-0000-000000000000'" +
+				",IsActiveEntity=true)";
+			window.location.href = window.location.href.split('#')[0] + sHash + fixedURL;
 
 		}
 	});

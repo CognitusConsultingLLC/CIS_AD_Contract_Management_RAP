@@ -277,6 +277,21 @@
 								}
 							}
 						}
+					},
+					"sap.suite.ui.generic.template.ListReport.view.ListReport": {
+						"controllerName": "cgdc.manage.contract.ext.controller.ListReportExt",
+						"sap.ui.generic.app": {
+							"xCGDCxC_ContractManagement_HD": {
+								"EntitySet": "xCGDCxC_ContractManagement_HD",
+								"Actions": {
+									"ActionxCGDCxC_ContractManagement_HD1": {
+										"id": "ActionxCGDCxC_ContractManagement_HD1button",
+										"text": "{@i18n>ActionxCGDCxC_ContractManagement_HD1}",
+										"press": "onClickActionxCGDCxC_ContractManagement_HD1"
+									}
+								}
+							}
+						}
 					}
 				}
 			}

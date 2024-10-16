@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:c="sap.ui.core" xmlns="sap.m"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:l="sap.ui.layout"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable">
+	<Dialog title="Create Contract" class="sapUiContentPadding" contentWidth="20rem" horizontalScrolling="false">
+		<content>
+			<smartForm:SmartForm id="idcreateContract" app:defaultCheckBoxDisplayBehaviour="OnOff" editable="true" editTogglable="false"
+				editToggled="handleEditToggled" title="">
+				<smartForm:Group>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{DocType}" TextInEditModeSource="NavigationProperty">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="descriptionOnly"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+		<buttons>
+			<Button text="Create" press="oncrContractButton" type="Emphasized"/>
+			<Button text="Cancel" press="oncrContractClose" type="Emphasized"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

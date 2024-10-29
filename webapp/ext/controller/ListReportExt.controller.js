@@ -5,6 +5,15 @@ sap.ui.define([
 	"use strict";
 
 	return sap.ui.controller("cgdc.manage.contract.ext.controller.ListReportExt", {
+		
+		onInit: function () {
+			let that = this;
+		
+				let oCreateButton =   
+				 sap.ui.getCore().byId("cgdc.manage.contract::sap.suite.ui.generic.template.ListReport.view.ListReport::xCGDCxC_ContractManagement_HD--addEntry");
+				 oCreateButton.setVisible(false);
+				
+		},
 
 		onClickActionxCGDCxC_ContractManagement_HD1: function (oEvent) {
 			if (!this.createContractDialog) {
@@ -32,20 +41,34 @@ sap.ui.define([
 			var form = sap.ui.getCore().byId("idFragContract--idcreateContract");
 			var oObject = form.getBindingContext().getObject();
 			var sContractType = oObject.DocType;
+			// var salesOrg = oObject.Vkorg
+			// var DisChannel = 
+			// var Division = 
+			// var salesgrp = 
+			// var salesoffice = 
 			var oModel = this.getOwnerComponent().getModel();
-			if (sContractType) {
+			if (sContractType &&  oObject.Vkorg && oObject.Vtweg && oObject.Spart ) {
 				if (!this._oApplicationController) {
 					this._oApplicationController = new ApplicationController(oModel, this.getView());
 				}
 				var oDefaultParams = {
-					"DocType": sContractType
-				}
+					"DocType": sContractType,
+					"Vkorg" : oObject.Vkorg,
+					"Vtweg" : oObject.Vtweg,
+					"Spart" : oObject.Spart,
+					"Vkbur" : oObject.Vkbur,
+					"Vkgrp"	: oObject.Vkgrp		
+				};
+				
 				this._oApplicationController.getTransactionController().getDraftController().createNewDraftEntity(
 					"xCGDCxC_ContractManagement_HD", "/xCGDCxC_ContractManagement_HD" , oDefaultParams, true, {})
 				.then(function (oResponse) {
 					//sap.m.MessageToast.show(oResponse.data.DraftUUID);
 					that.extensionAPI.getNavigationController().navigateInternal(oResponse.context);
 				});
+			}
+			else {
+				sap.m.MessageToast.show("Please enter all the Mandatory fields");
 			}
 		}
 	});

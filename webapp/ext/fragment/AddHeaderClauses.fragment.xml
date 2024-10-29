@@ -1,7 +1,15 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:smartField="sap.ui.comp.smartfield">
+	xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
 	<Dialog title="Add Clauses" class="sapUiContentPadding" horizontalScrolling="false" draggable="true">
 		<content>
+			<SegmentedButton selectedKey="ClasuesCatalog" width="100%" selectionChange="onselectionChange">
+				<items>
+					<SegmentedButtonItem id="idClauseCatalog" text="Add by Clause Catalog" key="ClasuesCatalog" enabled="true"/>
+					<SegmentedButtonItem id="idClauseName" text="Add by Clause Name" key="ClasuesName" enabled="true"/>
+				</items>
+			</SegmentedButton>
+			<MessageStrip id="Message" text="Please select the Clauses" type="Error" showIcon="true" visible="false" showCloseButton="true"></MessageStrip>
 			<VBox id="CC" class="sapUiSmallMarginTop">
 				<Label text="Choose a Clauses Catalog: " labelFor="idComboBox"/>
 				<ComboBox id="idComboBox" text="Clauses Catalog" items="{ path: '/xCGDCxI_ClausesCatalog' }" change="onCatalogSelect" width="400px"
@@ -24,7 +32,7 @@
 								<!--enabled="{= ${TreeDataModel>MatchingStatus} === 'EXC_MATCH' || ${TreeDataModel>MatchingStatus} === 'PAR_MATCH' ||  ${TreeDataModel>BillingDocItem} > 0}"/>-->
 							</t:template>
 						</t:Column>
-						<t:Column label="Clause No" visible = "false">
+						<t:Column label="Clause No" visible="false">
 							<t:template>
 								<Text text="{clnum}"/>
 							</t:template>
@@ -52,9 +60,26 @@
 					</t:columns>
 				</t:TreeTable>
 			</VBox>
-		
+			<VBox id="CN" fitContainer="true" visible="false">
+				<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="xCGDCxI_Clasues" persistencyKey="SmartFilter_Explored"
+					enableBasicSearch="true">
+					<!-- layout data used to make the table growing but the filter bar fixed -->
+					<smartFilterBar:layoutData>
+						<FlexItemData shrinkFactor="0"/>
+					</smartFilterBar:layoutData>
+				</smartFilterBar:SmartFilterBar>
+				<smartTable:SmartTable id="LineItemsSmartTable" entitySet="xCGDCxI_Clasues" tableType="Table" useTablePersonalisation="true"
+					smartFilterId="smartFilterBar" requestAtLeastFields="Clnum" header="Clauses" showRowCount="true" enableAutoBinding="true"
+					enableAutoColumnWidth="true" editTogglable="false" app:useSmartToggle="true" useVariantManagement="false">
+					<!-- layout data used to make the table growing but the filter bar fixed -->
+					<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+					</smartTable:layoutData>
+				</smartTable:SmartTable>
+			</VBox>
 		</content>
 		<buttons>
+		
 			<Button text="Add" id="idClausesAddButton" press="onCreateClauseSaveDialog" type="Emphasized" enabled="true"/>
 			<Button text="Cancel" press="onCreateClausecloseDialog"/>
 		</buttons>

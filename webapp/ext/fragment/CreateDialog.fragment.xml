@@ -5,12 +5,49 @@
 	<Dialog title="Create Contract" class="sapUiContentPadding" contentWidth="20rem" horizontalScrolling="false">
 		<content>
 			<smartForm:SmartForm id="idcreateContract" app:defaultCheckBoxDisplayBehaviour="OnOff" editable="true" editTogglable="false"
-				editToggled="handleEditToggled" title="">
+				editToggled="handleEditToggled" title="" validationMode="Async">
 				<smartForm:Group>
 					<smartForm:GroupElement>
-						<smartField:SmartField value="{DocType}" TextInEditModeSource="NavigationProperty">
+						<smartField:SmartField value="{DocType}" fixedValueListValidationEnabled="true"  clientSideMandatoryCheck="true" mandatory="true">
 							<smartField:configuration>
-								<smartField:Configuration displayBehaviour="descriptionOnly"/>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+			
+			
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{Vkorg}"  clientSideMandatoryCheck="true" fixedValueListValidationEnabled="true" mandatory="true" >
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{Vtweg}"  clientSideMandatoryCheck="true" fixedValueListValidationEnabled="true" mandatory="true">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+						<smartForm:GroupElement>
+						<smartField:SmartField value="{Spart}"  clientSideMandatoryCheck="true"  fixedValueListValidationEnabled="true" mandatory="true">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+						<smartForm:GroupElement>
+						<smartField:SmartField value="{Vkgrp}" TextInEditModeSource="NavigationProperty" clientSideMandatoryCheck="true" >
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+						<smartForm:GroupElement>
+						<smartField:SmartField value="{Vkbur}" TextInEditModeSource="NavigationProperty">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>
@@ -19,7 +56,7 @@
 		</content>
 		<buttons>
 			<Button text="Create" press="oncrContractButton" type="Emphasized"/>
-			<Button text="Cancel" press="oncrContractClose" type="Emphasized"/>
+			<Button text="Cancel" press="oncrContractClose" />
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

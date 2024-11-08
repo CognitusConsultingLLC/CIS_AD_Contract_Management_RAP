@@ -393,6 +393,13 @@
 								"component": {
 									"name": "sap.suite.ui.generic.template.ObjectPage"
 								}
+							},
+							"ObjectPage|to__CONTRACTCHGDOCHEADER": {
+								"navigationProperty": "to_CONTRACTCHGDOCHEADER",
+								"entitySet": "xCGDCxI_MODITRACK_MAIN",
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage"
+								}
 							}
 						}
 					}

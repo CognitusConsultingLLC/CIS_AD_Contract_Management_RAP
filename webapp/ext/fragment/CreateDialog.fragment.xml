@@ -8,7 +8,7 @@
 				editToggled="handleEditToggled" title="" validationMode="Async">
 				<smartForm:Group>
 					<smartForm:GroupElement>
-						<smartField:SmartField value="{DocType}" fixedValueListValidationEnabled="true"  clientSideMandatoryCheck="true" mandatory="true">
+						<smartField:SmartField value="{DocType}" textInEditModeSource="ValueList" clientSideMandatoryCheck="true" mandatory="true">
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
@@ -17,35 +17,35 @@
 			
 			
 					<smartForm:GroupElement>
-						<smartField:SmartField value="{Vkorg}"  clientSideMandatoryCheck="true" fixedValueListValidationEnabled="true" mandatory="true" >
+						<smartField:SmartField value="{Vkorg}"  clientSideMandatoryCheck="true" textInEditModeSource="ValueList"  mandatory="true" >
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>
 					<smartForm:GroupElement>
-						<smartField:SmartField value="{Vtweg}"  clientSideMandatoryCheck="true" fixedValueListValidationEnabled="true" mandatory="true">
+						<smartField:SmartField value="{Vtweg}"  clientSideMandatoryCheck="true"  textInEditModeSource="ValueList"  mandatory="true">
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>
 						<smartForm:GroupElement>
-						<smartField:SmartField value="{Spart}"  clientSideMandatoryCheck="true"  fixedValueListValidationEnabled="true" mandatory="true">
+						<smartField:SmartField value="{Spart}"  clientSideMandatoryCheck="true"  textInEditModeSource="ValueList"  mandatory="true">
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>
 						<smartForm:GroupElement>
-						<smartField:SmartField value="{Vkgrp}" TextInEditModeSource="NavigationProperty" clientSideMandatoryCheck="true" >
+						<smartField:SmartField value="{Vkgrp}" textInEditModeSource="ValueList"  clientSideMandatoryCheck="true" >
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>
 						<smartForm:GroupElement>
-						<smartField:SmartField value="{Vkbur}" TextInEditModeSource="NavigationProperty">
+						<smartField:SmartField value="{Vkbur}"  textInEditModeSource="ValueList" clientSideMandatoryCheck="true" >
 							<smartField:configuration>
 								<smartField:Configuration displayBehaviour="idAndDescription"/>
 							</smartField:configuration>

@@ -25,6 +25,18 @@ sap.ui.define([
 			let oConditionTable = this.getView().byId(
 				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable"
 			);
+			let clauesButton1 = sap.ui.getCore().byId(
+				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--HeaderClauses::addEntry"
+			);
+			if (clauesButton1) {
+				clauesButton1.setVisible(false);
+			}
+			let clauesButtonItem1 = sap.ui.getCore().byId(
+				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClauses::addEntry"
+			);
+			if (clauesButtonItem1) {
+				clauesButtonItem1.setVisible(false);
+			}
 
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
@@ -32,7 +44,7 @@ sap.ui.define([
 					// if (oButton && !oButton.getVisible()) {
 					// 	that.getView().getContent()[0].setShowHeaderContent(true);
 					// 
-
+				
 					let contracttype = that.getView().byId(
 						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Sales::DocType::Field"
 					);
@@ -96,9 +108,7 @@ sap.ui.define([
 							).setVisible(false);
 						}
 					}
-				
-						
-					
+
 					let oDisplayText = sap.ui.getCore().byId(
 						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_CONTRACT_TEXT--General::updateTxt1::Field"
 					);
@@ -160,7 +170,19 @@ sap.ui.define([
 						that.getView().byId(
 							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::NavtoClinAcrn"
 						).setVisible(false);
-
+						that.setVisiblityClause();
+						let clauesButton = sap.ui.getCore().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--HeaderClauses::addEntry"
+						);
+						if (clauesButton) {
+							clauesButton.setVisible(false);
+						}
+						let clauesButtonItem = sap.ui.getCore().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClauses::addEntry"
+						);
+						if (clauesButtonItem) {
+							clauesButtonItem.setVisible(false);
+						}
 					}
 					if (that.Posnr == '00000') {
 						if (that.getView().byId(
@@ -179,6 +201,15 @@ sap.ui.define([
 
 					that.getStatusData(that.Objnr, that.Auart, that.statusProfile);
 					that.onloadstatusProcess(that.statusProfile);
+					var oModel = that.getOwnerComponent().getModel();
+					that._oApplicationController = new ApplicationController(oModel, that.getView());
+					that.oContext = that.oView.getBindingContext();
+					var oDraftcontroller = that._oApplicationController.getTransactionController().getDraftController();
+					var hasDraft =oDraftcontroller.getDraftContext().hasDraft(that.oContext);
+					if (hasDraft && (!edit.getVisible()))
+					{
+						that.setVisiblityClause();
+					}
 				}
 			});
 		},
@@ -710,6 +741,7 @@ sap.ui.define([
 				const oselectedData = {
 					"Clnam": oSmartTable.getTable().getContextByIndex(j)
 						.getProperty("Clnam"),
+					"Descr": oSmartTable.getTable().getContextByIndex(j).getProperty("descr"),
 					"Clnum": oSmartTable.getTable().getContextByIndex(j)
 						.getProperty("Clnum"),
 					"Cltyp": oSmartTable.getTable().getContextByIndex(j)
@@ -844,6 +876,7 @@ sap.ui.define([
 						properties: {
 							"Docno2": this.Vbeln,
 							"Clnum": oClauses.clnum,
+							"Descr": oClauses.descr,
 							"Vbeln": this.Vbeln,
 							"Clnam": oClauses.clnam,
 							"Cltyp": oClauses.Cltyp,
@@ -872,7 +905,8 @@ sap.ui.define([
 						"Clnum": node.clnum,
 						"Cltyp": node.Cltyp,
 						"PresAt": node.pres_at,
-						"Valdfr": node.Vldfr
+						"Valdfr": node.Vldfr,
+						"Descr": node.descr
 					};
 					acc.push(filteredNode);
 				}
@@ -957,34 +991,20 @@ sap.ui.define([
 		onNavigateToPricingApp: function (oEvent) {
 			var oSelectedItem = oEvent.getSource().getParent().getParent().getSelectedItems();
 			var oConditionTable = oSelectedItem[0].getBindingContext().getObject("ConditionTable");
+			var oSubCat = oSelectedItem[0].getBindingContext().getObject("SubCategory");
 			var ConditionType = oSelectedItem[0].getBindingContext().getObject("ConditionType");
 			var pricingProf = oSelectedItem[0].getBindingContext().getObject("PriceMaintProfile");
-			if(pricingProf){
-				 pricingProf = oSelectedItem[0].getBindingContext().getObject("Pmprf");
+			if (!pricingProf) {
+				pricingProf = oSelectedItem[0].getBindingContext().getObject("Pmprf");
 			}
 			var Vbeln = this.Vbeln;
-
-			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
-			var sSemanticObject = "pricingmaintenance";
-			var sAction = "manage";
-
-			var sHash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
-				target: {
-					semanticObject: sSemanticObject,
-					action: sAction
-				},
-				params: {
-					"Pmprf": pricingProf,
-					"Vbeln": Vbeln,
-					"Kschl": ConditionType,
-					"Kotab": oConditionTable
-				}
-			})) || "";
-
-			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Kschl='" + ConditionType + "',Kotab='" +
-				oConditionTable + "',Vbeln='" + Vbeln + "',mganr='')/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
-				ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + Vbeln + "',mganr='')";
+			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Subct='" + oSubCat + "',Counter=" +
+				0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
+				ConditionType + "',Kotab='" + oConditionTable + "',Subct='" + oSubCat + "',Counter=" +
+				0 + ",Vbeln='" + Vbeln + "',mganr='')";
 			window.location.href = window.location.href.split('#')[0] + fixedURL;
+
+
 
 			// oCrossAppNavigator.toExternal({
 			// 	target: {

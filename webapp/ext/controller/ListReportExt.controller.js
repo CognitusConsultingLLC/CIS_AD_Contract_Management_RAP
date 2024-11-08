@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/generic/app/ApplicationController",
+		"sap/m/BusyDialog"
 
-], function (ApplicationController) {
+], function (ApplicationController, BusyDialog) {
 	"use strict";
 
 	return sap.ui.controller("cgdc.manage.contract.ext.controller.ListReportExt", {
@@ -35,12 +36,26 @@ sap.ui.define([
 			this.createContractDialog = "";
 			this.getOwnerComponent().getModel().resetChanges();
 		},
-
+       	showBusyIndicator: function () {
+			if (!this._busyIndicator) {
+				this._busyIndicator = new BusyDialog({
+					showCancelButton: false
+				});
+				this._busyIndicator.open();
+			}
+		},
+			hideBusyIndicator: function () {
+			if (this._busyIndicator) {
+				this._busyIndicator.close();
+				this._busyIndicator = null;
+			}
+		},
 		oncrContractButton: function (oEvent) {
 			var that = this;
 			var form = sap.ui.getCore().byId("idFragContract--idcreateContract");
 			var oObject = form.getBindingContext().getObject();
 			var sContractType = oObject.DocType;
+			
 			// var salesOrg = oObject.Vkorg
 			// var DisChannel = 
 			// var Division = 
@@ -59,12 +74,13 @@ sap.ui.define([
 					"Vkbur" : oObject.Vkbur,
 					"Vkgrp"	: oObject.Vkgrp		
 				};
-				
+				this.showBusyIndicator();
 				this._oApplicationController.getTransactionController().getDraftController().createNewDraftEntity(
 					"xCGDCxC_ContractManagement_HD", "/xCGDCxC_ContractManagement_HD" , oDefaultParams, true, {})
 				.then(function (oResponse) {
 					//sap.m.MessageToast.show(oResponse.data.DraftUUID);
 					that.extensionAPI.getNavigationController().navigateInternal(oResponse.context);
+					that.hideBusyIndicator();
 				});
 			}
 			else {

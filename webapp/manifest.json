@@ -225,6 +225,12 @@
 											"text": "{@i18n>Clin_Acrn}",
 											"press": "onNavToClinAcrn",
 											"requiresSelection": false
+										},
+											"ModificationTracking": {
+											"id": "ModificationTracking",
+											"text": "{@i18n>ModificationTracking}",
+											"press": "onClickModificationTracking",
+											"requiresSelection": false
 										}
 									}
 								},

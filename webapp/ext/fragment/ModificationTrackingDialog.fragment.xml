@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:form="sap.ui.layout.form" xmlns:c="sap.ui.core" xmlns="sap.m"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:l="sap.ui.layout"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartTable="sap.ui.comp.smarttable">
+	<Dialog title="Modification Tracking" class="sapUiContentPadding" contentWidth="20rem" horizontalScrolling="false">
+		<content>
+			<smartForm:SmartForm id="idModification" app:defaultCheckBoxDisplayBehaviour="OnOff" editable="true" editTogglable="false"
+			 title="" validationMode="Async">
+				<smartForm:Group>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{Prefix}" textInEditModeSource="ValueList" clientSideMandatoryCheck="true" mandatory="true">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+			
+			
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{ModiN}"  textInEditModeSource="ValueList"  mandatory="true" >
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+						<smartField:SmartField value="{ModiT}"  textInEditModeSource="ValueList"  mandatory="true">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+						<smartForm:GroupElement>
+						<smartField:SmartField value="{ModiD}"  textInEditModeSource="ValueList"  mandatory="true">
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+						<smartForm:GroupElement>
+						<smartField:SmartField value="{Moditext}" textInEditModeSource="ValueList"  clientSideMandatoryCheck="true" >
+							<smartField:configuration>
+								<smartField:Configuration displayBehaviour="idAndDescription"/>
+							</smartField:configuration>
+						</smartField:SmartField>
+					</smartForm:GroupElement>
+					
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+		<buttons>
+			<Button text="Edit" press="onModificationEditButton" type="Emphasized"/>
+			<Button text="Cancel" press="onModClose" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

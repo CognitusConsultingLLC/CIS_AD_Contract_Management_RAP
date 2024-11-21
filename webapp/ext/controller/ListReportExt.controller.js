@@ -55,7 +55,7 @@ sap.ui.define([
 			var form = sap.ui.getCore().byId("idFragContract--idcreateContract");
 			var oObject = form.getBindingContext().getObject();
 			var sContractType = oObject.DocType;
-			
+			let oResourceBundle =  this.getView().getModel("i18n").getResourceBundle();
 			// var salesOrg = oObject.Vkorg
 			// var DisChannel = 
 			// var Division = 
@@ -84,7 +84,7 @@ sap.ui.define([
 				});
 			}
 			else {
-				sap.m.MessageToast.show("Please enter all the Mandatory fields");
+				sap.m.MessageToast.show(oResourceBundle.getText("MissingField"));
 			}
 		}
 	});

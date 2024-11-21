@@ -37,7 +37,7 @@ sap.ui.define([
 			if (clauesButtonItem1) {
 				clauesButtonItem1.setVisible(false);
 			}
-
+			
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
 					// var oButton = that.getView().byId("cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--edit");
@@ -154,12 +154,14 @@ sap.ui.define([
 					that.Auart = oEvent.context.getModel().getData(spath).Auart;
 					that.modtrackenable = oEvent.context.getModel().getData(spath).modtrackenable;
 					that.Vbeln = Vbeln;
-					let moditrackButton = sap.ui.getCore().byId(
+				   	let moditrackButton = sap.ui.getCore().byId(
 						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::ModificationTracking"
 					);
+					moditrackButton.setType("Emphasized");
 					moditrackButton.setVisible(false);
 					if (that.modtrackenable == 'X') {
 						moditrackButton.setVisible(true);
+						edit.setVisible(false);
 					}
 					if (that.Vbeln == '') {
 						that.getView().byId(
@@ -212,10 +214,11 @@ sap.ui.define([
 					that._oApplicationController = new ApplicationController(oModel, that.getView());
 					that.oContext = that.oView.getBindingContext();
 					var oDraftcontroller = that._oApplicationController.getTransactionController().getDraftController();
-					var hasDraft = oDraftcontroller.getDraftContext().hasDraft(that.oContext);
-					if (hasDraft && (!edit.getVisible())) {
-						that.setVisiblityClause();
+					that.hasDraft = oDraftcontroller.hasActiveEntity(that.oContext);
+					if (that.hasDraft) {
+					 	that.setVisiblityClause();
 					}
+				
 				}
 			});
 		},
@@ -231,6 +234,10 @@ sap.ui.define([
 		},
 
 		setVisiblityClause: function () {
+		
+			let Modification = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::ModificationTracking");
+			Modification.setVisible(false);	 
 			let clauesButton = sap.ui.getCore().byId(
 				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--HeaderClauses::addEntry"
 			);
@@ -962,10 +969,12 @@ sap.ui.define([
 							"xCGDCxC_ContractManagement_HD", spath, checkedNodes[i], true)
 						.then(function (oResponse) {
 							let data = oResponse;
+							let oResourceBundle =  that.getView().getModel("i18n").getResourceBundle();
 							if (i == checkedNodes.length - 1) {
 								that.hideBusyIndicator();
 								that.onCreateClausecloseDialog();
-								sap.m.MessageToast.show("Clauses Added Successfully");
+								sap.m.MessageToast.show(oResourceBundle.getText("ClasueAdded"));
+							
 								that.getView().getModel().refresh(true);
 								that.getView().byId("AddHeaderClause").setVisible(false);
 								that.getView().byId("AddItemClause").setVisible(false);
@@ -1061,13 +1070,18 @@ sap.ui.define([
 			form.setBindingContext(oModelContext);
 		},
 		onModClose: function (oEvent) {
+			this.getOwnerComponent().getModel().resetChanges();
+			let edit = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--edit");
+			edit.setVisible(false);
 			this.ModificationDialog.close();
 			this.ModificationDialog.destroy();
 			this.ModificationDialog = "";
-			this.getOwnerComponent().getModel().resetChanges();
+		
 		},
 		onModificationEditButton: function (oEvent) {
 			let that = this;
+			let oResourceBundle =  this.getView().getModel("i18n").getResourceBundle();
 			var form = sap.ui.getCore().byId("idModification--idModification");
 			var mParameters = {
 				"Vbeln": this.Vbeln,
@@ -1079,17 +1093,27 @@ sap.ui.define([
 				"ModiD": form.getSmartFields()[3].getValue(),
 				"Moditext": form.getSmartFields()[4].getValue()
 			};
-
+            if( mParameters.Prefix == "" || mParameters.ModiN == "" || mParameters.ModiT == "" || mParameters.ModiD == "" || mParameters.ModiD == "" ) {
+                  	sap.m.MessageToast.show(oResourceBundle.getText("MissingField") );
+            }
+            that.getOwnerComponent().getModel().resetChanges();
 			this.extensionAPI.invokeActions(
 					"/Modification", [], mParameters)
 				.then(function (oData, Resp) {
 					let edit = sap.ui.getCore().byId(
-						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::cds_xcgdcxui_contract_mngmnt.cds_xcgdcxui_contract_mngmnt_Entities::Modification");
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--edit");
 					that.ModificationDialog.close();
 					that.ModificationDialog.destroy();
 					that.ModificationDialog = "";
 					that.getOwnerComponent().getModel().resetChanges();
+					edit.setVisible(true);
 					edit.firePress();
+					let moditrackButton = sap.ui.getCore().byId(
+						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::ModificationTracking"
+					);
+				//	moditrackButton.setType("Emphasized");
+					moditrackButton.setVisible(false);
+				
 				});
 		}
 	});

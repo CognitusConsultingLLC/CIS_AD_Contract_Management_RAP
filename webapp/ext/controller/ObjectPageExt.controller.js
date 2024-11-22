@@ -158,11 +158,7 @@ sap.ui.define([
 						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--action::ModificationTracking"
 					);
 					moditrackButton.setType("Emphasized");
-					moditrackButton.setVisible(false);
-					if (that.modtrackenable == 'X') {
-						moditrackButton.setVisible(true);
-						edit.setVisible(false);
-					}
+				
 					if (that.Vbeln == '') {
 						that.getView().byId(
 							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::Section"
@@ -215,10 +211,15 @@ sap.ui.define([
 					that.oContext = that.oView.getBindingContext();
 					var oDraftcontroller = that._oApplicationController.getTransactionController().getDraftController();
 					that.hasDraft = oDraftcontroller.hasActiveEntity(that.oContext);
-					if (that.hasDraft) {
+				
+				   	moditrackButton.setVisible(false);
+					if (!that.hasDraft && that.modtrackenable == 'X') {
+						moditrackButton.setVisible(true);
+						edit.setVisible(false);
+					}
+				   	if (that.hasDraft) {
 					 	that.setVisiblityClause();
 					}
-				
 				}
 			});
 		},
@@ -1096,7 +1097,7 @@ sap.ui.define([
             if( mParameters.Prefix == "" || mParameters.ModiN == "" || mParameters.ModiT == "" || mParameters.ModiD == "" || mParameters.ModiD == "" ) {
                   	sap.m.MessageToast.show(oResourceBundle.getText("MissingField") );
             }
-            that.getOwnerComponent().getModel().resetChanges();
+            this.getOwnerComponent().getModel().resetChanges();
 			this.extensionAPI.invokeActions(
 					"/Modification", [], mParameters)
 				.then(function (oData, Resp) {

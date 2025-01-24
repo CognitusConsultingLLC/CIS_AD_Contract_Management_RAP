@@ -1,423 +1,424 @@
 {
-	"_version": "1.8.0",
-	"sap.app": {
-		"id": "cgdc.manage.contract",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
-		"tags": {
-			"keywords": []
-		},
-		"dataSources": {
-			"mainService": {
-				"uri": "/sap/opu/odata/cgdc/UI_CONTRACT_MGMT/",
-				"type": "OData",
-				"settings": {
-					"annotations": [
-						"_CGDC_UI_CONTRACT_MGMT_VAN"
-					],
-					"localUri": "localService/metadata.xml"
-				}
-			},
-			"_CGDC_UI_CONTRACT_MGMT_VAN": {
-				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FCGDC%2FUI_CONTRACT_MGMT_VAN',Version='0001')/$value/",
-				"type": "ODataAnnotation",
-				"settings": {
-					"localUri": "localService/_CGDC_UI_CONTRACT_MGMT_VAN.xml"
-				}
-			},
-			"GW_EXT_APPS_SRV": {
-				"uri": "/sap/opu/odata/cgdc/GW_EXT_APPS_SRV/",
-				"type": "OData",
-				"settings": {
-					"localUri": "localService/GW_EXT_APPS_SRV/metadata.xml"
-				}
-			},
-			"CV_ATTACHMENT_SRV": {
-				"uri": "/sap/opu/odata/sap/CV_ATTACHMENT_SRV/",
-				"type": "OData",
-				"settings": {
-					"localUri": "localService/CV_ATTACHMENT_SRV/metadata.xml"
-				}
-			}
-		},
-		"offline": false,
-		"sourceTemplate": {
-			"id": "ui5template.smartTemplate",
-			"version": "1.40.12"
-		},
-		"crossNavigation": {
-			"inbounds": {
-				"intent1": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "pricingmaintenance",
-					"action": "manage"
-				}
-			}
-		}
-	},
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": "",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		},
-		"supportedThemes": [
-			"sap_fiori_3"
-		]
-	},
-	"sap.ui5": {
-		"resources": {
-			"js": [],
-			"css": []
-		},
-		"routing": {
-			"routes": [
-				{
-					"name": "Overview",
-					"pattern": "",
-					"target": [
-						"Overview"
-					]
-				},
-				{
-					"name": "create",
-					"pattern": "Create",
-					"target": [
-						"Create"
-					]
-				}
-			]
-		},
-		"dependencies": {
-			"minUI5Version": "1.65.6",
-			"libs": {
-				"sap.ui.core": {
-					"lazy": false
-				},
-				"sap.ui.generic.app": {
-					"lazy": false
-				},
-				"sap.suite.ui.generic.template": {
-					"lazy": false
-				}
-			},
-			"components": {}
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
-			"@i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
-			"i18n|sap.suite.ui.generic.template.ListReport|xCGDCxC_ContractManagement_HD": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/ListReport/xCGDCxC_ContractManagement_HD/i18n.properties"
-			},
-			"i18n|sap.suite.ui.generic.template.ObjectPage|xCGDCxC_ContractManagement_HD": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/ObjectPage/xCGDCxC_ContractManagement_HD/i18n.properties"
-			},
-			"i18n|sap.suite.ui.generic.template.ObjectPage|xCGDCxC_ContractManagement_Itm": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/ObjectPage/xCGDCxC_ContractManagement_Itm/i18n.properties"
-			},
-			"": {
-				"dataSource": "mainService",
-				"preload": true,
-				"settings": {
-					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "Inline",
-					"refreshAfterChange": false
-				}
-			},
-			"customerImageModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"customFieldsModel": {
-				"type": "sap.ui.model.odata.v2.ODataModel",
-				"settings": {
-					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneWay",
-					"defaultCountMode": "Request"
-				},
-				"dataSource": "GW_EXT_APPS_SRV",
-				"preload": true
-			},
-			"customerImages": {
-				"type": "sap.ui.model.odata.v2.ODataModel",
-				"settings": {
-					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneWay",
-					"defaultCountMode": "Request"
-				},
-				"dataSource": "CV_ATTACHMENT_SRV",
-				"preload": true
-			}
-		},
-		"extends": {
-			"extensions": {
-				"sap.ui.viewExtensions": {
-					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
-						"NoImageExtensionFacet|xCGDCxC_ContractManagement_HD": {
-							"type": "XML",
-							"className": "sap.ui.core.Fragment",
-							"fragmentName": "cgdc.manage.contract.ext.fragment.CustomerImage",
-							"sap.ui.generic.app": {
-								"title": "{@i18n>Customer Image}"
-							}
-						},
-						"BeforeFacet|xCGDCxC_ContractManagement_HD|VochureNum": {
-							"type": "XML",
-							"className": "sap.ui.core.Fragment",
-							"fragmentName": "cgdc.manage.contract.ext.fragment.DocumentFlow",
-							"sap.ui.generic.app": {
-								"title": "{@i18n>Document Flow}"
-							}
-						},
-						"BeforeFacet|xCGDCxC_ContractManagement_HD|Status": {
-							"type": "XML",
-							"className": "sap.ui.core.Fragment",
-							"fragmentName": "cgdc.manage.contract.ext.fragment.StatusOverview",
-							"sap.ui.generic.app": {
-								"title": "{@i18n>Status Overview}"
-							}
-						},
-						"BeforeFacet|xCGDCxC_ContractManagement_Itm|Text": {
-							"type": "XML",
-							"className": "sap.ui.core.Fragment",
-							"fragmentName": "cgdc.manage.contract.ext.fragment.ItemDocumentFlow",
-							"sap.ui.generic.app": {
-								"title": "{@i18n>Document Flow}"
-							}
-						}
-					}
-				},
-				"sap.ui.controllerExtensions": {
-					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
-						"controllerName": "cgdc.manage.contract.ext.controller.ObjectPageExt",
-						"sap.ui.generic.app": {
-							"xCGDCxC_ContractManagement_HD": {
-								"EntitySet": "xCGDCxC_ContractManagement_HD",
-								"Header": {
-									"Actions": {
-										"ModificationTracking": {
-											"id": "ModificationTracking",
-											"text": "{@i18n>ModificationTracking}",
-											"press": "onClickModificationTracking",
-											"requiresSelection": false
-										},
-										"NavtoClinAcrn": {
-											"id": "NavtoClinAcrn",
-											"text": "{@i18n>Clin_Acrn}",
-											"press": "onNavToClinAcrn",
-											"requiresSelection": false
-										}
-									}
-								},
-								"Sections": {
-									"HeaderClauses": {
-										"id": "HeaderClauses",
-										"Actions": {
-											"ActionxCGDCxC_ContractManagement_HDSections1": {
-												"id": "ActionxCGDCxC_ContractManagement_HDSections1button",
-												"text": "{@i18n>Add_Clauses}",
-												"press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
-											}
-										}
-									},
-									"Condition": {
-										"id": "Condition",
-										"Actions": {
-											"ActionxCGDCxC_ContractManagement_HDSections2": {
-												"id": "ActionxCGDCxC_ContractManagement_HDSections1button2",
-												"text": "{@i18n>ActionxCGDCxC_ContractManagement_HDSections2}",
-												"press": "onNavigateToPricingApp"
-											}
-										}
-									}
-								}
-							},
-							"xCGDCxC_ContractManagement_Itm": {
-								"EntitySet": "xCGDCxC_ContractManagement_Itm",
-								"Sections": {
-									"ItemClauses": {
-										"id": "ItemClauses",
-										"Actions": {
-											"ActionxCGDCxC_ContractManagement_HDSections1": {
-												"id": "ItemClausesAdd",
-												"text": "{@i18n>Add_Clauses}",
-												"press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
-											}
-										}
-									},
-									"Condition": {
-										"id": "Condition",
-										"Actions": {
-											"ActionxCGDCxC_ContractManagement_HDSections2": {
-												"id": "ActionxCGDCxC_ContractManagement_HDSections1button2",
-												"text": "{@i18n>ActionxCGDCxC_ContractManagement_HDSections2}",
-												"press": "onNavigateToPricingApp"
-											}
-										}
-									}
-								}
-							}
-						}
-					},
-					"sap.suite.ui.generic.template.ListReport.view.ListReport": {
-						"controllerName": "cgdc.manage.contract.ext.controller.ListReportExt",
-						"sap.ui.generic.app": {
-							"xCGDCxC_ContractManagement_HD": {
-								"EntitySet": "xCGDCxC_ContractManagement_HD",
-								"Actions": {
-									"ActionxCGDCxC_ContractManagement_HD1": {
-										"id": "ActionxCGDCxC_ContractManagement_HD1button",
-										"text": "{@i18n>ActionxCGDCxC_ContractManagement_HD1}",
-										"press": "onClickActionxCGDCxC_ContractManagement_HD1"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		}
-	},
-	"sap.ui.generic.app": {
-		"_version": "1.3.0",
-		"settings": {
-			"flexibleColumnLayout": {
-				"defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-				"defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-			},
-			"forceGlobalRefresh": false,
-			"objectPageHeaderType": "Dynamic",
-			"showDraftToggle": false
-		},
-		"pages": {
-			"ListReport|xCGDCxC_ContractManagement_HD": {
-				"entitySet": "xCGDCxC_ContractManagement_HD",
-				"component": {
-					"name": "sap.suite.ui.generic.template.ListReport",
-					"list": true,
-					"settings": {
-						"filterSettings": {
-							"dateSettings": {
-								"useDateRange": true
-							}
-						},
-						"smartVariantManagement": true,
-						"condensedTableLayout": true
-					}
-				},
-				"pages": {
-					"ObjectPage|xCGDCxC_ContractManagement_HD": {
-						"entitySet": "xCGDCxC_ContractManagement_HD",
-						"defaultLayoutType": "OneColumn",
-						"component": {
-							"name": "sap.suite.ui.generic.template.ObjectPage"
-						},
-						"pages": {
-							"ObjectPage|to_CONTRACTITM": {
-								"navigationProperty": "to_CONTRACTITM",
-								"entitySet": "xCGDCxC_ContractManagement_Itm",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								},
-								"pages": {
-									"ObjectPage|to_ContractItm_Txt": {
-										"navigationProperty": "to_ContractItm_Txt",
-										"entitySet": "xCGDCxC_CONTRACTITM_TXT",
-										"component": {
-											"name": "sap.suite.ui.generic.template.ObjectPage"
-										}
-									},
-									"ObjectPage|to_CONTRACTITMPARTNER": {
-										"navigationProperty": "to_CONTRACTITMPARTNER",
-										"entitySet": "xCGDCxC_ContractPartner_ITM",
-										"component": {
-											"name": "sap.suite.ui.generic.template.ObjectPage"
-										}
-									},
-									"ObjectPage|to_ContractItm_Clauses": {
-										"navigationProperty": "to_ContractItm_Clauses",
-										"entitySet": "xCGDCxC_Contract_ITMClauses",
-										"component": {
-											"name": "sap.suite.ui.generic.template.ObjectPage"
-										}
-									}
-								}
-							},
-							"ObjectPage|to_CONTRACTCFA_ITEM": {
-								"navigationProperty": "to_CONTRACTCFA_ITEM",
-								"entitySet": "xCGDCxC_CONTRACTCFA_IT",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								}
-							},
-							"ObjectPage|to_CONTRACT_TEXT": {
-								"navigationProperty": "to_CONTRACT_TEXT",
-								"entitySet": "xCGDCxC_CONTRACT_TEXT",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								}
-							},
-							"ObjectPage|to_ContractPartner": {
-								"navigationProperty": "to_ContractPartner",
-								"entitySet": "xCGDCxC_ContractPartner_HD",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								}
-							},
-							"ObjectPage|to_Contract_HDClauses": {
-								"navigationProperty": "to_Contract_HDClauses",
-								"entitySet": "xCGDCxC_Contract_HDClauses",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								}
-							},
-							"ObjectPage|to__CONTRACTCHGDOCHEADER": {
-								"navigationProperty": "to_CONTRACTCHGDOCHEADER",
-								"entitySet": "xCGDCxI_MODITRACK_MAIN",
-								"component": {
-									"name": "sap.suite.ui.generic.template.ObjectPage"
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"sap.platform.hcp": {
-		"uri": ""
-	},
-	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/cgdc/fr_mngecontract/webapp",
-		"_version": "1.1.0"
-	}
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "cgdc.manage.contract",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/cgdc/UI_CONTRACT_MGMT/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "_CGDC_UI_CONTRACT_MGMT_VAN"
+                    ],
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "_CGDC_UI_CONTRACT_MGMT_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FCGDC%2FUI_CONTRACT_MGMT_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/_CGDC_UI_CONTRACT_MGMT_VAN.xml"
+                }
+            },
+            "GW_EXT_APPS_SRV": {
+                "uri": "/sap/opu/odata/cgdc/GW_EXT_APPS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/GW_EXT_APPS_SRV/metadata.xml"
+                }
+            },
+            "CV_ATTACHMENT_SRV": {
+                "uri": "/sap/opu/odata/sap/CV_ATTACHMENT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/CV_ATTACHMENT_SRV/metadata.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "ui5template.smartTemplate",
+            "version": "1.40.12",
+            "toolsId": "1d4bd578-a55a-4def-8d63-6e73dd399763"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "pricingmaintenance",
+                    "action": "manage"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_fiori_3"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "name": "Overview",
+                    "pattern": "",
+                    "target": [
+                        "Overview"
+                    ]
+                },
+                {
+                    "name": "create",
+                    "pattern": "Create",
+                    "target": [
+                        "Create"
+                    ]
+                }
+            ]
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.core": {
+                    "lazy": false
+                },
+                "sap.ui.generic.app": {
+                    "lazy": false
+                },
+                "sap.suite.ui.generic.template": {
+                    "lazy": false
+                }
+            },
+            "components": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ListReport|xCGDCxC_ContractManagement_HD": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ListReport/xCGDCxC_ContractManagement_HD/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|xCGDCxC_ContractManagement_HD": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/xCGDCxC_ContractManagement_HD/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|xCGDCxC_ContractManagement_Itm": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/xCGDCxC_ContractManagement_Itm/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
+                }
+            },
+            "customerImageModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "customFieldsModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "GW_EXT_APPS_SRV",
+                "preload": true
+            },
+            "customerImages": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "CV_ATTACHMENT_SRV",
+                "preload": true
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "NoImageExtensionFacet|xCGDCxC_ContractManagement_HD": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "cgdc.manage.contract.ext.fragment.CustomerImage",
+                            "sap.ui.generic.app": {
+                                "title": "{@i18n>Customer Image}"
+                            }
+                        },
+                        "BeforeFacet|xCGDCxC_ContractManagement_HD|VochureNum": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "cgdc.manage.contract.ext.fragment.DocumentFlow",
+                            "sap.ui.generic.app": {
+                                "title": "{@i18n>Document Flow}"
+                            }
+                        },
+                        "BeforeFacet|xCGDCxC_ContractManagement_HD|Status": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "cgdc.manage.contract.ext.fragment.StatusOverview",
+                            "sap.ui.generic.app": {
+                                "title": "{@i18n>Status Overview}"
+                            }
+                        },
+                        "BeforeFacet|xCGDCxC_ContractManagement_Itm|Text": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "cgdc.manage.contract.ext.fragment.ItemDocumentFlow",
+                            "sap.ui.generic.app": {
+                                "title": "{@i18n>Document Flow}"
+                            }
+                        }
+                    }
+                },
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "cgdc.manage.contract.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "xCGDCxC_ContractManagement_HD": {
+                                "EntitySet": "xCGDCxC_ContractManagement_HD",
+                                "Header": {
+                                    "Actions": {
+                                        "ModificationTracking": {
+                                            "id": "ModificationTracking",
+                                            "text": "{@i18n>ModificationTracking}",
+                                            "press": "onClickModificationTracking",
+                                            "requiresSelection": false
+                                        },
+                                        "NavtoClinAcrn": {
+                                            "id": "NavtoClinAcrn",
+                                            "text": "{@i18n>Clin_Acrn}",
+                                            "press": "onNavToClinAcrn",
+                                            "requiresSelection": false
+                                        }
+                                    }
+                                },
+                                "Sections": {
+                                    "HeaderClauses": {
+                                        "id": "HeaderClauses",
+                                        "Actions": {
+                                            "ActionxCGDCxC_ContractManagement_HDSections1": {
+                                                "id": "ActionxCGDCxC_ContractManagement_HDSections1button",
+                                                "text": "{@i18n>Add_Clauses}",
+                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
+                                            }
+                                        }
+                                    },
+                                    "Condition": {
+                                        "id": "Condition",
+                                        "Actions": {
+                                            "ActionxCGDCxC_ContractManagement_HDSections2": {
+                                                "id": "ActionxCGDCxC_ContractManagement_HDSections1button2",
+                                                "text": "{@i18n>ActionxCGDCxC_ContractManagement_HDSections2}",
+                                                "press": "onNavigateToPricingApp"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xCGDCxC_ContractManagement_Itm": {
+                                "EntitySet": "xCGDCxC_ContractManagement_Itm",
+                                "Sections": {
+                                    "ItemClauses": {
+                                        "id": "ItemClauses",
+                                        "Actions": {
+                                            "ActionxCGDCxC_ContractManagement_HDSections1": {
+                                                "id": "ItemClausesAdd",
+                                                "text": "{@i18n>Add_Clauses}",
+                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
+                                            }
+                                        }
+                                    },
+                                    "Condition": {
+                                        "id": "Condition",
+                                        "Actions": {
+                                            "ActionxCGDCxC_ContractManagement_HDSections2": {
+                                                "id": "ActionxCGDCxC_ContractManagement_HDSections1button2",
+                                                "text": "{@i18n>ActionxCGDCxC_ContractManagement_HDSections2}",
+                                                "press": "onNavigateToPricingApp"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "controllerName": "cgdc.manage.contract.ext.controller.ListReportExt",
+                        "sap.ui.generic.app": {
+                            "xCGDCxC_ContractManagement_HD": {
+                                "EntitySet": "xCGDCxC_ContractManagement_HD",
+                                "Actions": {
+                                    "ActionxCGDCxC_ContractManagement_HD1": {
+                                        "id": "ActionxCGDCxC_ContractManagement_HD1button",
+                                        "text": "{@i18n>ActionxCGDCxC_ContractManagement_HD1}",
+                                        "press": "onClickActionxCGDCxC_ContractManagement_HD1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "flexibleColumnLayout": {
+                "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+            },
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|xCGDCxC_ContractManagement_HD": {
+                "entitySet": "xCGDCxC_ContractManagement_HD",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "list": true,
+                    "settings": {
+                        "filterSettings": {
+                            "dateSettings": {
+                                "useDateRange": true
+                            }
+                        },
+                        "smartVariantManagement": true,
+                        "condensedTableLayout": true
+                    }
+                },
+                "pages": {
+                    "ObjectPage|xCGDCxC_ContractManagement_HD": {
+                        "entitySet": "xCGDCxC_ContractManagement_HD",
+                        "defaultLayoutType": "OneColumn",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_CONTRACTITM": {
+                                "navigationProperty": "to_CONTRACTITM",
+                                "entitySet": "xCGDCxC_ContractManagement_Itm",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "pages": {
+                                    "ObjectPage|to_ContractItm_Txt": {
+                                        "navigationProperty": "to_ContractItm_Txt",
+                                        "entitySet": "xCGDCxC_CONTRACTITM_TXT",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    },
+                                    "ObjectPage|to_CONTRACTITMPARTNER": {
+                                        "navigationProperty": "to_CONTRACTITMPARTNER",
+                                        "entitySet": "xCGDCxC_ContractPartner_ITM",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    },
+                                    "ObjectPage|to_ContractItm_Clauses": {
+                                        "navigationProperty": "to_ContractItm_Clauses",
+                                        "entitySet": "xCGDCxC_Contract_ITMClauses",
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        }
+                                    }
+                                }
+                            },
+                            "ObjectPage|to_CONTRACTCFA_ITEM": {
+                                "navigationProperty": "to_CONTRACTCFA_ITEM",
+                                "entitySet": "xCGDCxC_CONTRACTCFA_IT",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_CONTRACT_TEXT": {
+                                "navigationProperty": "to_CONTRACT_TEXT",
+                                "entitySet": "xCGDCxC_CONTRACT_TEXT",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_ContractPartner": {
+                                "navigationProperty": "to_ContractPartner",
+                                "entitySet": "xCGDCxC_ContractPartner_HD",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_Contract_HDClauses": {
+                                "navigationProperty": "to_Contract_HDClauses",
+                                "entitySet": "xCGDCxC_Contract_HDClauses",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to__CONTRACTCHGDOCHEADER": {
+                                "navigationProperty": "to_CONTRACTCHGDOCHEADER",
+                                "entitySet": "xCGDCxI_MODITRACK_MAIN",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.platform.hcp": {
+        "uri": ""
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/cgdc/fr_mngecontract/webapp",
+        "_version": "1.1.0"
+    }
 }

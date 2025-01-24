@@ -27,8 +27,8 @@ sap.ui.define([
 
 			var form = sap.ui.getCore().byId("idFragContract--idcreateContract");
 			var oModel = this.getOwnerComponent().getModel();
-			var oModelContext = oModel.createEntry("/xCGDCxC_ContractManagement_HD");
-			form.setBindingContext(oModelContext);
+			this.oModelContext = oModel.createEntry("/xCGDCxC_ContractManagement_HD");
+			form.setBindingContext(this.oModelContext);
 		},
 		oncrContractClose: function (oEvent) {
 			this.createContractDialog.close();
@@ -66,22 +66,23 @@ sap.ui.define([
 				if (!this._oApplicationController) {
 					this._oApplicationController = new ApplicationController(oModel, this.getView());
 				}
-				var oDefaultParams = {
-					"DocType": sContractType,
-					"Vkorg" : oObject.Vkorg,
-					"Vtweg" : oObject.Vtweg,
-					"Spart" : oObject.Spart,
-					"Vkbur" : oObject.Vkbur,
-					"Vkgrp"	: oObject.Vkgrp		
-				};
-				this.showBusyIndicator();
-				this._oApplicationController.getTransactionController().getDraftController().createNewDraftEntity(
-					"xCGDCxC_ContractManagement_HD", "/xCGDCxC_ContractManagement_HD" , oDefaultParams, true, {})
-				.then(function (oResponse) {
-					//sap.m.MessageToast.show(oResponse.data.DraftUUID);
-					that.extensionAPI.getNavigationController().navigateInternal(oResponse.context);
-					that.hideBusyIndicator();
-				});
+//				var oDefaultParams = {
+//					"DocType": sContractType,
+//					"Vkorg" : oObject.Vkorg,
+//					"Vtweg" : oObject.Vtweg,
+//					"Spart" : oObject.Spart,
+//					"Vkbur" : oObject.Vkbur,
+//					"Vkgrp"	: oObject.Vkgrp,
+//					"DraftUUID": '00000000-0000-0000-0000-000000000000',		
+//				};
+//				this._oApplicationController.getTransactionController().getDraftController().createNewDraftEntity(
+//					"xCGDCxC_ContractManagement_HD", "/xCGDCxC_ContractManagement_HD" ,oDefaultParams, true, {})
+//				.then(function (oResponse) {
+//					//sap.m.MessageToast.show(oResponse.data.DraftUUID);
+					this.extensionAPI.getNavigationController().navigateInternal(this.oModelContext);
+					this.hideBusyIndicator();
+//				this.showBusyIndicator();
+//				});
 			}
 			else {
 				sap.m.MessageToast.show(oResourceBundle.getText("MissingField"));

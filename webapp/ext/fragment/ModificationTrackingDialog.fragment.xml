@@ -5,7 +5,7 @@
 	<Dialog title="Modification Tracking" class="sapUiContentPadding" contentWidth="20rem" horizontalScrolling="false">
 		<content>
 			<smartForm:SmartForm id="idModification" app:defaultCheckBoxDisplayBehaviour="OnOff" editable="true" editTogglable="false"
-			 title="" validationMode="Async">
+			 title="">
 				<smartForm:Group>
 					<smartForm:GroupElement>
 						<smartField:SmartField value="{Prefix}" textInEditModeSource="ValueList" clientSideMandatoryCheck="true" mandatory="true">
@@ -33,7 +33,7 @@
 						<smartForm:GroupElement>
 						<smartField:SmartField value="{ModiD}"  textInEditModeSource="ValueList"  mandatory="true">
 							<smartField:configuration>
-								<smartField:Configuration displayBehaviour="idAndDescription"/>
+								<smartField:Configuration controlType="datePicker" displayBehaviour="idAndDescription"/>
 							</smartField:configuration>
 						</smartField:SmartField>
 					</smartForm:GroupElement>

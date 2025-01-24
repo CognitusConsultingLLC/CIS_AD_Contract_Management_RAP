@@ -138,7 +138,7 @@ sap.ui.define([
 						"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--footerObjectPageBackTo"
 					);
 					if (oItemApplyButton) {
-						oItemApplyButton.attachPress(that.refreshPage, that);
+//						oItemApplyButton.attachPress(that.refreshPage, that);
 					}
 					let spath = oEvent.context.getPath();
 					let Vbeln = oEvent.context.getModel().getData(spath).Vbeln;
@@ -1015,9 +1015,13 @@ sap.ui.define([
 			}
 			var Vbeln = this.Vbeln;
 			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Subct='" + oSubCat + "',Counter=" +
-				0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
-				ConditionType + "',Kotab='" + oConditionTable + "',Subct='" + oSubCat + "',Counter=" +
-				0 + ",Vbeln='" + Vbeln + "',mganr='')";
+			0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
+			ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + Vbeln + "',mganr='',cc_docno='',Subct='" + oSubCat + "',Counter=" +
+			0 + ")";
+//			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Subct='" + oSubCat + "',Counter=" +
+//				0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
+//				ConditionType + "',Kotab='" + oConditionTable + "',Subct='" + oSubCat + "',Counter=" +
+//				0 + ",Vbeln='" + Vbeln + "',mganr='')";
 			window.location.href = window.location.href.split('#')[0] + fixedURL;
 
 			// oCrossAppNavigator.toExternal({

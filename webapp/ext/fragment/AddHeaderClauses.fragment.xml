@@ -82,6 +82,7 @@
 		
 			<Button text="Add" id="idClausesAddButton" press="onCreateClauseSaveDialog" type="Emphasized" enabled="true"/>
 			<Button text="Cancel" press="onCreateClausecloseDialog"/>
+			
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

@@ -5,7 +5,7 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "SCC_XID_202_T",
+        "name": "SCC_M1D_200_COGNITUS",
         "entryPath": "/sap/opu/odata"
       },
       "description": "Cloud Connector - XID 202"
@@ -51,7 +51,7 @@
       "path": "/sap/bc/lrep",
       "target": {
         "type": "destination",
-        "name": "SCC_XID_202_T",
+        "name": "SCC_M1D_200_COGNITUS",
         "entryPath": "/sap/bc/lrep"
       },
       "description": "SCC_XID_202_T"

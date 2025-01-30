@@ -14,13 +14,13 @@ builder:
       afterTask: generateCachebusterInfo
       configuration:
         target:
-          destination: XD2-200-CognitusID
-          url: http://xd2:443
+          destination: SCC_M1D_200_COGNITUS
+          url: http://m1d:443
           client: '200'
         app:
           name: /CGDC/FR_MNGECONTRACT
-          description: Modification Date changes
+          description: create Clauses Hiding
           package: /CGDC/CORE
-          transport: XD2K901167
+          transport: M1DK905194
         exclude:
           - /test/

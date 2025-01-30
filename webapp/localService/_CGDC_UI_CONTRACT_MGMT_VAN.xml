@@ -602,7 +602,7 @@
 					</Collection>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/HasDraftEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/HasDraftEntity">><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
 			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/DraftEntityCreationDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
 			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/DraftEntityLastChangeDateTime"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>
 			<Annotations Target="cds_xcgdcxui_contract_mngmnt.xCGDCxC_ContractPartner_HDType/HasActiveEntity"><Annotation Term="UI.HiddenFilter"/><Annotation Term="UI.Hidden"/></Annotations>

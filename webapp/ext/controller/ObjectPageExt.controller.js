@@ -22,21 +22,7 @@ sap.ui.define([
 		onInit: function () {
 			this.initializeJSONModel();
 			let that = this;
-			let oConditionTable = this.getView().byId(
-				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable"
-			);
-			let clauesButton1 = sap.ui.getCore().byId(
-				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--HeaderClauses::addEntry"
-			);
-			if (clauesButton1) {
-				clauesButton1.setVisible(false);
-			}
-			let clauesButtonItem1 = sap.ui.getCore().byId(
-				"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClauses::addEntry"
-			);
-			if (clauesButtonItem1) {
-				clauesButtonItem1.setVisible(false);
-			}
+
 			
 			this.extensionAPI.attachPageDataLoaded(function (oEvent) {
 				{
@@ -106,6 +92,9 @@ sap.ui.define([
 								"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClausesAdd"
 							).setVisible(false);
 						}
+						let oConditionTable = this.getView().byId(
+							"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--Condition::responsiveTable"
+						);
 					}
 
 					let oDisplayText = sap.ui.getCore().byId(
@@ -231,7 +220,7 @@ sap.ui.define([
 			this.getView().getModel("HeaderData").setData([]);
 		},
 		refreshPage: function () {
-			this.getView().getModel().refresh(true);
+			this.getView().getModel().refresh(true);			
 		},
 
 		setVisiblityClause: function () {
@@ -265,6 +254,7 @@ sap.ui.define([
 					"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClausesAdd"
 				).setVisible(true);
 			}
+			
 		},
 
 		getCustomerImageData: function (SoldToParty) {
@@ -977,6 +967,19 @@ sap.ui.define([
 								sap.m.MessageToast.show(oResourceBundle.getText("ClasueAdded"));
 							
 								that.getView().getModel().refresh(true);
+								// added by AGUSAIN
+								let clauesButton1 = sap.ui.getCore().byId(
+									"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_HD--HeaderClauses::addEntry"
+								);
+								if (clauesButton1) {
+									clauesButton1.setVisible(false);
+								}
+								let clauesButtonItem1 = sap.ui.getCore().byId(
+									"cgdc.manage.contract::sap.suite.ui.generic.template.ObjectPage.view.Details::xCGDCxC_ContractManagement_Itm--ItemClauses::addEntry"
+								);
+								if (clauesButtonItem1) {
+									clauesButtonItem1.setVisible(false);
+								}
 								that.getView().byId("AddHeaderClause").setVisible(false);
 								that.getView().byId("AddItemClause").setVisible(false);
 								that.getView().byId("DeleteHeaderClause").setVisible(false);
@@ -1016,7 +1019,7 @@ sap.ui.define([
 			var Vbeln = this.Vbeln;
 			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Subct='" + oSubCat + "',Counter=" +
 			0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +
-			ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + Vbeln + "',mganr='',cc_docno='',Subct='" + oSubCat + "',Counter=" +
+			ConditionType + "',Kotab='" + oConditionTable + "',Vbeln='" + Vbeln + "',mganr='',Subct='" + oSubCat + "',Counter=" +
 			0 + ")";
 //			var fixedURL = "#pricingmaintenance-manage&/xCGDCxI_PRICING_MAIN(Pmprf='" + pricingProf + "',Subct='" + oSubCat + "',Counter=" +
 //				0 + ")/toCondCat(Pmprf='" + pricingProf + "',Kschl='" +

@@ -25,9 +25,9 @@ server:
         ignoreCertError: false
         backend:
           - path: /sap
-            url: http://xd2:443/
+            url: http://m1d:443
             client: "200"
-            destination: XD2-200-CognitusID
+            destination: SCC_M1D_200_COGNITUS
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

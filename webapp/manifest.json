@@ -242,7 +242,8 @@
                                             "ActionxCGDCxC_ContractManagement_HDSections1": {
                                                 "id": "ActionxCGDCxC_ContractManagement_HDSections1button",
                                                 "text": "{@i18n>Add_Clauses}",
-                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
+                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1",
+                                                "logicalAction": "Create"
                                             }
                                         }
                                     },
@@ -267,7 +268,8 @@
                                             "ActionxCGDCxC_ContractManagement_HDSections1": {
                                                 "id": "ItemClausesAdd",
                                                 "text": "{@i18n>Add_Clauses}",
-                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1"
+                                                "press": "onClickActionxCGDCxC_ContractManagement_HDSections1",
+                                                "logicalAction": "Create"
                                             }
                                         }
                                     },
